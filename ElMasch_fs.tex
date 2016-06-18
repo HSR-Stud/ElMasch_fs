@@ -1,0 +1,1115 @@
+\documentclass{article}
+
+\input{fs.tex}
+%Title of Document
+\chead{Elektrische Maschinen} 
+
+\begin{document}
+\begin{twocolumn} 
+
+\section{Felder}
+\subsection{Elektrisches Feld}
+
+Folgende Formeln gelten für 2 Dimensionen. Dazu müssen die Ladungsträger zylinderförmig 
+sein. 
+
+\begin{tabular}{ll}
+  \begin{tabular}{ll}
+    \cdef{$\varepsilon \cunit{As}{Vm}$} & \cdef{dielektrische permittivität} \\
+    \cdef{$Q, q \cunit{C}{m}$} & \cdef{Linienladungsdichte} \\
+    \cdef{$\vec{r}_0$} & \cdef{Einheitsvektor}\\
+    \cdef{$\vec{F}_e \cunit{N}{m}$} & \cdef{Elektrische Kraft} \\
+    \cdef{$\vec{E} \cunit{V}{m}$} & \cdef{Elektrisches Feld} \\
+  \end{tabular} &
+  \begin{tabular}{l}
+    $\varepsilon = \varepsilon_0 \cdot \varepsilon_r, \quad \varepsilon_0 = 8.8542 $ \\
+    $\fmm \vec{F}_e = \frac{Q \cdot q}{2 \pi \varepsilon r} \cdot \vec{r}_0$ \\
+    $\fmm \vec{E} = \frac{\vec{F}_e}{q} = \frac{Q}{2 \pi \varepsilon r} \cdot \vec{r}_0$ \\
+    $\fmm U_{AB} = \int_A^B \vec{E} \cdot \vec{dl} = \varphi_A - \varphi_B$
+  \end{tabular}\\
+\end{tabular}
+
+\subsection{Magnetisches Feld}
+
+Für die Richtungen der Vektoren eines Kreuzproduktes kann folgende Regel angewendet 
+werden: $\vec{a}$: Daumen, $\vec{b}$: Zeigefinger, $\vec{a} \times \vec{b}:$ Mittelfinger
+
+\begin{tabular}{ll}
+  \begin{tabular}{ll}
+    \cdef{$\mu \cunit{N}{A^2}$} & \cdef{magnetische permeabilität} \\
+    \cdef{$I, i [A]$} & \cdef{Ströme der Leiter} \\
+    \cdef{$\vec{F}_m \cunit{N}{m}$} & \cdef{magnetische Kraft} \\
+    \cdef{$\vec{H} \cunit{A}{m}$} & \cdef{magnetisches Feld} \\
+    \cdef{$\vec{B}$ [T]} & \cdef{magnetische Flussdichte} \\
+    \cdef{$\Phi [Wb]$} & \cdef{magnetischer Fluss} \\
+    \cdef{$\Psi [Wb]$} & \cdef{verketteter mag. Fluss} \\
+    \cdef{$\Theta [A]$} & \cdef{magnetische Durchflutung} \\
+    \cdef{$V_m [A]$} & \cdef{Magnetische Spannung} \\
+    \cdef{$R_m \cunit{A}{Wb}$} & \cdef{Magnetischer Wiederstand} \\
+    \cdef{$\gamma$} & \cdef{geschlossener Weg um Leiter} \\
+    \cdef{$l, r$} & \cdef{Länge / Radius einer Spule} \\
+    \cdef{$W_m [J]$} & \cdef{Magnetische Energie}
+  \end{tabular} &
+  \begin{tabular}{l}
+    $\mu = \mu_0 \cdot \mu_r \quad \mu_0 = 4 \pi \cdot 10^{-7}$ \\
+    $\fmm \vec{F}_m = \frac{\mu}{2\pi} \cdot \frac{I i}{r}\cdot \vec{r}_0 = \mu \cdot i \cdot \vec{l}_0 \times \vec{H}$ \\
+    $\fmm \vec{H} = \frac{I}{2\pi} \cdot \frac{\vec{L}_0 \times \vec{r}_0}{r}$ \\
+    $\fmm \vec{B} = \mu \cdot  \vec{H}$ \\
+    $\fmm \Phi = \iint_A \vec{B} \cdot \vec{dA}, \quad \Psi = N \cdot \Phi$ \\
+    $\fmm U_{ind} = - \frac{d\Psi}{dt} = -N \cdot \frac{d\Phi}{dt}$ \\
+    $\fmm \Theta = \sum_{k=1}^n I_k = \oint_\gamma \vec{H} \cdot \vec{dl} = N \cdot I$  \\ 
+    $\fmm V_m = \int_A^B \vec{H} \cdot \vec{dl}$ \\
+    $\fmm R_m = \frac{V_m}{\Phi} = \frac{l}{\mu \cdot A} \text{(wenn Homogen)}$ \\
+    $\fmm H = \frac{N \cdot I}{l}, \quad  \text{wenn } l \gg r$ \\
+    $\fmm W_m = \frac{1}{2} \cdot H \cdot B \cdot V$
+  \end{tabular}
+\end{tabular}
+
+\subsection{einfacher Magnetkreis}
+
+\begin{tabular}{ll}
+  \begin{tabular}{l}
+    \begin{tikzpicture}
+      \filldraw[fill=clGray] (0,0) -- node[above, xshift=-1.7cm, yshift=-0.05cm]{Eisenjoch}(5,0) -- (5,1) -- (0,1) -- cycle;
+      \filldraw[fill=clGray] (0,1.5) -- (1,1.5) -- (1,3) -- (4,3) -- (4,1.5) -- (5,1.5) -- (5,4) -- node[below, xshift=-1.7cm, yshift=0.05cm]{Eisenkern}(0,4) -- cycle;
+      \draw[preaction={fill, clRed}, pattern=north west lines, pattern color=cRed] (1.5, 2.95) rectangle (3.5,2.6);
+      \draw[preaction={fill, clRed}, pattern=north west lines, pattern color=cRed] (1.5, 4.05) rectangle (3.5,4.4);
+      \draw[>-<, thin](-0.1,1.5) -- node[right, xshift=-2pt]{\small $\delta/2$} (-0.1,1);
+      \draw[>-<, thin](5.1,1.5) -- node[left, xshift=2pt]{\small $\delta$/2} (5.1,1);
+      \draw[>=latex, ->, draw=cRed, thick] (3,3.5) -- node[above]{$\color{cRed}\Phi$} (2,3.5);
+      \draw[dashed, cRed] (2,3.5) -- (0.5,3.5) -- node[right]{$\color{cRed}\gamma$}(0.5,1.5);
+      \draw[dashed, cGreen] (0.5,1.5) -- (0.5,1);
+      \draw[dashed, cRed] (0.5,1) -- (0.5,0.5) -- (4.5,0.5) -- (4.5,1);
+      \draw[dashed, cGreen] (4.5,1) -- (4.5,1.5);
+      \draw[dashed, cRed] (4.5,1.5) -- (4.5,3.5) -- (3, 3.5);
+      \draw[>=latex, ->, draw=cBlue, thick] (2.5,0.7) -- node[right]{$\color{cBlue}\vec{F}_R$} (2.5,2);
+    \end{tikzpicture}
+  \end{tabular} &
+  \begin{tabular}{l}
+    Im Luftspalt: $\mathbf{B}$ \textbf{Konstant!} \\ 
+    $\fmm \oint_{\gamma} \vec{H} \vec{dl} = H_{Fe} \cdot l_{Fe} + 2 \delta H_\delta = N I$ \\
+    \cdef{Länge aller Luftspalte $\delta$} \\
+    $\fmm H_\delta = \frac{N \cdot I}{\delta}, \textrm{ wenn } H_\delta \gg H_{Fe}$ \\
+    $\fmm F_R = \mu_0 \cdot \frac{N^2 I^2 A_{Fe}}{4\delta^2}$ \\
+    $\fmm W_m = \frac{1}{2} H_\delta B_\delta \cdot 2 A_{Fe} \delta = \frac{\mu_0 A_{Fe} I^2 N^2}{4 \delta}$ \\
+    \textbf{in der Sättigung:} \\
+    $\fmm H_\delta = \frac{N \cdot I}{\frac{\mu_0}{\mu_{Fe}} l_{Fe} + 2 \delta}$
+  \end{tabular} \\
+\end{tabular}
+
+\subsection{Dauermagnet}
+\begin{tabular}{ll}
+  \begin{tabular}{l}
+    \begin{tikzpicture}
+      \begin{axis}[
+        width=5cm, 
+        height=5cm, 
+        axis lines=middle, 
+        xlabel={$H \cunit{A}{m}$},
+        ylabel={$B [T]$}, 
+        x label style={at={(axis description cs:1.37,0.03)}},
+        y label style={at={(axis description cs:0.73,1.15)}},
+        xmin=-1, xmax=0.2, 
+        ymin = -0.2, ymax = 1, 
+        xtick={-0.8}, 
+        xticklabels={$H_C$}, 
+        ytick={0.8}, 
+        yticklabels={$B_R$}]
+        
+        \draw[cRed, thick](axis cs:-0.83, -0.03) -- (axis cs:0.03, 0.83);
+        
+      \end{axis}
+    \end{tikzpicture}
+  \end{tabular}
+  \begin{tabular}{l}
+    \cdef{Koerzitivfeldstärke $H_C$} \\
+    \cdef{Remanenz $B_R$} \\
+    $B_m = \mu_m \cdot H_m + B_R, \quad \mu_m = \mu_0$ \\
+    \textbf{Magnetkreis mit Dauermagnet} \\
+    \cdef{Magnet: $l_m$, $\mu_m$}, im Eisenjoch \\
+    $\fmm H_\delta = \frac{N \cdot I + \frac{B_r}{\mu_m} l_m}{\frac{\mu_0}{\mu_{Fe}}l_{Fe} + \frac{\mu_0}{\mu_m}l_m + 2\delta}$
+  \end{tabular}
+\end{tabular}
+
+\section{Gleichstrommaschine}
+
+\begin{tabular}{ll}
+
+  \begin{tabular}{l}
+    \begin{tikzpicture} [scale=0.8, every node/.style={scale=0.8}]
+      \draw [fill=clGray] (0,0) circle (4);
+      \draw (0,3.4) node{Ständer}; 
+      \draw [fill=white] (0,0) circle (3);
+      \draw [fill=clGray] (0,0) circle (1.3);
+      
+      \draw [fill=clGray, draw=none] (-0.5,3) -- (0,3.3) -- (0.5,3) -- (0.5,2) -- (1.3, 1.2) -- (1.3,1) -- (1.2,0.9) arc (36.87:143.13:1.5) -- (-1.2,0.9) -- (-1.3,1) -- (-1.3,1.2) -- (-0.5,2) -- (-0.5,3);
+      \draw (0.5,2.958) -- (0.5,2) -- (1.3, 1.2) -- (1.3,1) -- (1.2,0.9) arc (36.87:143.13:1.5) -- (-1.2,0.9) -- (-1.3,1) -- (-1.3,1.2) -- (-0.5,2) -- (-0.5,2.958);
+      
+      \draw [fill=clGray, draw=none] (-0.5,-3) -- (0,-3.3) -- (0.5,-3) -- (0.5,-2) -- (1.3, -1.2) -- (1.3,-1) -- (1.2,-0.9) arc (-36.87:-143.13:1.5) -- (-1.2,-0.9) -- (-1.3,-1) -- (-1.3,-1.2) -- (-0.5,-2) -- (-0.5,-3);
+      \draw (0.5,-2.958) -- (0.5,-2) -- (1.3, -1.2) -- (1.3,-1) -- (1.2,-0.9) arc (-36.87:-143.13:1.5) -- (-1.2,-0.9) -- (-1.3,-1) -- (-1.3,-1.2) -- (-0.5,-2) -- (-0.5,-2.958);
+      
+      \draw[preaction={fill, clRed}, pattern=north west lines, pattern color=cRed] (0.55, 2.05) rectangle (1.15,2.65);
+      \draw[preaction={fill, clRed}, pattern=north west lines, pattern color=cRed] (-0.55, 2.05) rectangle (-1.15,2.65);
+      \draw[preaction={fill, clRed}, pattern=north west lines, pattern color=cRed] (0.55, -2.05) rectangle (1.15,-2.65);
+      \draw[preaction={fill, clRed}, pattern=north west lines, pattern color=cRed] (-0.55, -2.05) rectangle (-1.15,-2.65);
+    
+      \foreach \phi in {10,30,...,170}
+        {\draw [fill=clBlue] (\phi:1.15) circle (0.115);
+         \draw [fill=cBlue, draw=cBlue] (\phi:1.15) circle (0.03);} 
+      \foreach \phi in {190,210,...,350}
+        {\draw [fill=clBlue] (\phi:1.15) circle (0.115) node{$\color{cBlue}\times$};} 
+        
+      \draw [fill=cGray, draw=cGray] (1.3,0.2) rectangle (1.5,-0.2);
+      \draw [fill=cGray, draw=cGray] (-1.3,0.2) rectangle (-1.5,-0.2);
+      \draw [draw=cGray] (1.5,0) -- (2.25,0) node[above]{$-$};
+      \draw [draw=cGray] (-1.5,0) -- (-2.25,0) node[above]{$+$}; 
+      \draw [fill=cGray, draw=cGray] (2.25,0) circle (0.06);
+      \draw [fill=cGray, draw=cGray] (-2.25,0) circle (0.06);
+      
+      %references
+      \draw (0,2.6) circle (0.2) node{1};
+      \draw (0.5,-1.66) circle (0.2) node{2};
+      \draw (2.475, 2.475) circle (0.2) node{3};
+      \draw (-1.3, 2.05) circle (0.2) node{4};
+      \draw (1.35, 0.6) circle (0.2) node{5};
+      \draw (-1.6,-0.35) circle (0.2) node{6};
+      \draw (-0.6,-0.5) circle (0.2) node{7};
+      
+      %field
+      \draw[->, >=stealth', draw=cRed](170:3.5) arc (170:190:3.5);
+      \draw[->, >=stealth', draw=cRed](10:3.5) arc (10:-10:3.5);
+      \draw[->, >=stealth', draw=cRed] (0,-2.8) -- node[left, xshift=2]{\color{cRed}$\vec{B}_e$} (0,-2);
+      \draw[->, >=stealth', draw=cRed] (0,0) -- node[left, xshift=2]{\color{cRed}$\vec{B}_e$} (0,0.8);
+      \draw[->, >=stealth', draw=cBlue] (0,0) -- node[below, yshift=1]{\color{cBlue}$\vec{B}_a$} (0.4,0);
+      \draw[->, >=stealth', draw=cGreen] (0,0) -- node[right]{\color{cGreen}$\vec{B}_g$} (0.4,0.8);
+    
+    \end{tikzpicture}
+    
+  \end{tabular} &
+  
+  \begin{tabular}{l}
+    \begin{circuitikz} [scale=0.7, transform shape]
+      \draw (0,0) to [short, *-] (1.5,0) to [voltage source, l={\large $E$}] (1.5,1.5);
+      \draw (0,4.5) to [short, *-,  i={\large $I_a$}] (1.5,4.5) to [resistor, l_={\large $R_a$}] (1.5,3) to [inductor, l_={\large$L_a$}] (1.5,1.5);
+      \draw[-latex,shorten >=2mm, shorten <=2mm,in=110, out=250] (0,4.5) to node[right] {$\cn{U_a}$} (0,0);
+      \draw (4,4.5) to [short, *-, i_={\large $I_e$}] (2.5,4.5) to [resistor, l={\large $R_e$}] (2.5,3) to [inductor, l={\large $L_e$}] (2.5,1.5) to [short, -*] (4,1.5);
+      \draw[-latex,shorten >=2mm, shorten <=2mm,in=70, out=290] (4,4.5) to node[left] {\large $\cn{U_e}$} (4,1.5);
+    \end{circuitikz} \\
+    \circled{1}: Polkern, 
+    \circled{2}: Polschuh \\
+    \circled{3}: Ständerjoch \\
+    \circled{4}: Erregerwicklung (EW) \\
+    \circled{5}: Ankerwicklung (AW) \\
+    \circled{6}: Bürste, 
+    \circled{7}: Anker
+  \end{tabular}
+  
+\end{tabular}
+
+\begin{tabular}{ll}
+  \begin{tabular}{ll}
+    \cdef{$M [Nm]$} & \cdef{Drehmoment} \\
+    \cdef{$P [W]$} & \cdef{Leistung} \\
+    \cdef{$X_a$} & \cdef{Anker-grösse} \\
+    \cdef{$X_e$} & \cdef{Erreger-Grösse} \\
+    \cdef{$\vec{B}_a$} & \cdef{Ankerrückwirkung} \\
+    \cdef{$n \cunit{1}{min}$} & \cdef{Drehzahl}
+  \end{tabular}
+  
+  \begin{tabular}{l}
+    $U_e = R_e \cdot I_e + L_e \cdot \frac{dI_e}{dt}$ \\
+    $U_a = R_a \cdot I_a + L_a \cdot \frac{dI_a}{dt} + E$ \\
+    $E = \omega \cdot \Psi \qquad \Psi = L_e \cdot I_e$ \\
+    $P_{el} = \underbrace{ R_e \cdot I_e^2 }_{\text{Erregerverluste}} + \underbrace{R_a \cdot I_a^2}_{\text{Ankerverluste}} + \omega \cdot \Psi \cdot I_a$ \\
+    $P_{mech} = \omega \cdot M, \qquad M = \Psi \cdot I_a$ \\
+    $\fmm M = \frac{U_a \cdot \Psi - \omega \cdot \Psi^2}{R_a}$
+  \end{tabular}
+\end{tabular}
+ 
+\subsection{Kompensation der Ankerrückwirkung}
+\begin{itemize}
+  \item Die \textbf{Kompensationswicklung (KW)} wird im Polschuh des Stators eingesetzt. 
+  Somit wirkt ein Feld $\vec{B}_{kw}$ gegen die Ankerrückwirkung $\vec{B}_{a}$. Die 
+  Nuten werden durch den Polschuh geführt.
+  \item Die \textbf{Compoundwicklung (KP)} gleicht die durch die Nuten der KW verursachte
+  Hauptfeldschwächung aus. Diese wird in Serie zu der EW montiert.
+  \item Durch die KP wird das Feld $\vec{B}_e$ verstärkt. Somit stimmt das Gleichgewicht 
+  von $\vec{B_g}$ nicht mehr. Deshalb wird die \textbf{Wendepolwicklung (WW)} eingesetzt.
+  Sie wird im Ständerjoch montiert, so dass $\vec{B}_{ww}$ gegen $\vec{B}_{a}$
+  zeigt.
+\end{itemize}
+ 
+\subsection{Beschaltung}
+\subsubsection{Nebenschluss}
+Hier werden Erreger- und Ankerwicklung parallel an die gleiche Spannungsquelle geschaltet. 
+Somit gilt: $U_e = U_a = U$. \cdef{$M_A$: Anlaufmoment, $n_0$: Leerlaufdrehzahl, $I_{aA}$: Anlaufstrom, $R_v$: Anlaufwiederstand}
+
+$$M = I_a \cdot \Psi = \frac{U \cdot \Psi - \frac{2\pi}{60} n \cdot \Psi^2}{R_a} \qquad I_a = \frac{U - \frac{2\pi}{60}n \cdot \Psi}{R_a} $$
+$$n = 0 \Rightarrow M_A = \frac{U \cdot \Psi}{R_a} \qquad I_{aA} = \frac{U}{R_a + R_v} \qquad M=0 \Rightarrow n_0 = \frac{U}{\frac{2\pi}{60} \Psi}$$
+
+\begin{tabular}{ll}
+  \begin{tabular}{l}
+    \begin{tikzpicture}
+      \begin{axis} [
+        width=6cm, 
+        height=4cm, 
+        axis lines=middle, 
+        ylabel={$M [Nm]$},
+        xlabel={$n \cunit{1}{min}$}, 
+        xmin=0, xmax=1.2, 
+        ymin = 0, ymax = 1.4, 
+        xtick={0.45,0.9}, 
+        xticklabels={$n_b$,$n_0$}, 
+        ytick={0.45,0.9}, 
+        yticklabels={$M_b$, $M_a$}
+      ]
+      
+      \draw [cRed, thick] (axis cs:0.9,0) -- (axis cs:0,0.9);
+      \draw [dashed] (axis cs:0.45,0) -- (axis cs:0.45,0.45);
+      \draw [dashed] (axis cs:0.45,0.45) -- (axis cs:0,0.45);
+      \draw [fill=black] (axis cs:0.45,0.45) circle (0.05cm);
+        
+      \end{axis}
+    \end{tikzpicture}
+  \end{tabular} &
+   
+  \begin{tabular}{l}
+    $\fmm \frac{M}{M_A} = 1 - \frac{n}{n_0}$ \\ 
+    \cdef{$M_B$: Betriebsmoment}\\
+    \cdef{$n_b$: Betriebsdrehzahl} \\
+  \end{tabular}
+\end{tabular}
+
+\subsubsection{Reihenschluss}
+Hier werden Erreger- und Ankerwicklungen in Serie an die gemeinsame Spannungsquelle 
+geschaltet. Nun Gilt: $I_e = I_a = I$. \cdef{$M_A$: Anlaufmoment, $n_b$: 
+Bezugsdrehzahl}
+
+$$U = U_a + U_e = (R_a + R_e) I + \frac{2\pi}{60}n \cdot \Psi, \qquad \Psi = L_e \cdot I$$
+$$M = I \cdot \Psi = L_e \left(\frac{U}{R_a + R_e + \frac{2\pi}{60}n L_e}\right)^2$$
+$$n=0 \Rightarrow M_A = \frac{L_e \cdot U^2}{(R_a + R_e)^2} \qquad n_b = \frac{R_a + R_e}{\frac{2\pi}{60} L_e}$$
+
+\begin{tabular}{ll}
+  \begin{tabular}{l}
+    \begin{tikzpicture}
+      \begin{axis} [
+        width=6cm, 
+        height=4cm, 
+        axis lines=middle, 
+        ylabel={$M [Nm]$},
+        xlabel={$n \cunit{1}{min}$}, 
+        xmin=0, xmax=1.2, 
+        ymin = 0, ymax = 1.2, 
+        xtick={0.45}, 
+        xticklabels={$n_b$}, 
+        ytick={0.47,1}, 
+        yticklabels={$M_b$, $M_a$}
+      ]
+      
+      \addplot [draw=cRed, thick, domain=0:4*pi, samples=200]{1/((1+(x))^2)};
+      
+      \draw [dashed] (axis cs:0.45,0) -- (axis cs:0.45,0.47);
+      \draw [dashed] (axis cs:0.45,0.47) -- (axis cs:0,0.47);
+      \draw [fill=black] (axis cs:0.45,0.47) circle (0.05cm);
+        
+      \end{axis}
+    \end{tikzpicture}
+  \end{tabular} &
+  
+  \begin{tabular}{l}
+    $\fmm \frac{M}{M_A} = \frac{1}{\left(1+\frac{n}{n_b}\right)^2}$ \\ 
+    \cdef{$M_B$: Betriebsmoment}\\
+    \cdef{$n_b$: Betriebsdrehzahl} \\
+  \end{tabular}
+\end{tabular}
+
+\section{Drehfelderzeugung}
+
+\begin{tabular}{ll}
+  \begin{tabular}{l}
+    \begin{tikzpicture} [scale=0.8, every node/.style={scale=0.8}]
+      \draw[fill=clGray] (0,0) circle (4);
+      \draw[fill=white] (0,0) circle (2.6);
+      \draw[fill=clGray] (0,0) circle (2.5);
+      
+      \foreach \phi/\col/\x in {90/Blue/U_{1+}, 75/Blue/U_{2+}, 60/Blue/U_{3+}, 45/Blue/U_{4+},
+                                -30/Green/V_{1+}, -45/Green/V_{2+}, -60/Green/V_{3+}, -75/Green/V_{4+},
+                                -150/Red/W_{1+}, -165/Red/W_{2+}, 180/Red/W_{3+}, 165/Red/W_{4+}}
+      {
+%         \draw[fill=cl\col] (\phi:2.8) circle (0.16) node{\color{c\col}$\times$};
+        \draw[fill=white, draw=none] (\phi-3.5:2.55) -- (\phi-3.5:2.9) -- (\phi+3.5:2.9) -- (\phi+3.5:2.55) arc (\phi+3.5:\phi-3.5:2.55);
+        \draw(\phi-3.5:2.6) -- (\phi-3.5:2.9) -- (\phi+3.5:2.9) -- (\phi+3.5:2.6);
+        \draw[fill=cl\col](\phi-2.5:2.6) -- (\phi-2.5:2.85) -- (\phi+2.5:2.85) -- (\phi+2.5:2.6) -- (\phi-2.5:2.6);
+        \draw[thick, c\col](\phi-2.5:2.6) -- (\phi+2.5:2.85);
+        \draw[thick, c\col](\phi-2.5:2.85) -- (\phi+2.5:2.6);
+        \draw(\phi:3.3) node {\color{c\col}$\x$};
+      }
+      
+      \foreach \phi/\col/\x in {30/Red/W_{1-}, 15/Red/W_{2-}, 0/Red/W_{3-}, -15/Red/W_{4-},
+                                -90/Blue/U_{1-}, -105/Blue/U_{2-}, -120/Blue/U_{3-}, -135/Blue/U_{4-},
+                                150/Green/V_{1-}, 135/Green/V_{2-}, 120/Green/V_{3-}, 105/Green/V_{4-}}
+      {
+      
+%         \draw[fill=cl\col] (\phi:2.8) circle (0.16);
+%         \draw[fill=c\col, draw=none] (\phi:2.8) circle (0.04);
+        \draw[fill=white, draw=none] (\phi-3.5:2.55) -- (\phi-3.5:2.9) -- (\phi+3.5:2.9) -- (\phi+3.5:2.55) arc (\phi+3.5:\phi-3.5:2.55);
+        \draw(\phi-3.5:2.6) -- (\phi-3.5:2.9) -- (\phi+3.5:2.9) -- (\phi+3.5:2.6);
+        \draw[fill=cl\col](\phi-2.5:2.6) -- (\phi-2.5:2.85) -- (\phi+2.5:2.85) -- (\phi+2.5:2.6) -- (\phi-2.5:2.6);
+        \draw[fill=c\col, draw=c\col](\phi:2.72) circle (0.05);
+        \draw(\phi:3.4) node {\color{c\col}$\x$};
+      }
+      
+      \draw[>=latex, ->, thick, cBlue] (67.5:0) -- (67.5:1.6);
+      \draw[>=latex, ->, thick, cGreen] (-52.5:0) -- (-52.5:1.6);
+      \draw[>=latex, ->, thick, cRed] (-172.5:0) -- (-172.5:1.6);
+      \draw[>=latex,<->, cGray](67.5:1) arc (67.5:187.5:1);
+      \draw[>=latex,<->, cGray](-172.5:1) arc (-172.5:-52.5:1);
+      \draw[>=latex,<->, cGray](67.5:1) arc (67.5:1-52.5:1);
+      \draw[cGray] (7.5:0.6) node {$\frac{2\pi}{3}$};
+      \draw[cGray] (127.5:0.6) node {$\frac{2\pi}{3}$};
+      \draw[cGray] (-112.5:0.6) node {$\frac{2\pi}{3}$};
+      
+    \end{tikzpicture}
+  \end{tabular} &
+  \begin{tabular}{ll}
+    \cdef{$p$} & \cdef{Polpaarzahl} \\
+    \cdef{$2p$} & \cdef{Polzahl} \\
+    \cdef{$N_n$} & \cdef{Nutenzahl} \\
+    \cdef{m} & \cdef{Strangzahl} \\
+    \cdef{q} & \cdef{Nuten pro Phasenband} \\
+    \multicolumn{2}{l}{$N = 2p \cdot q \cdot m$} \\
+    \multicolumn{2}{l}{$\fmm n = \frac{60 \cdot f}{p}$}
+  \end{tabular}
+\end{tabular}
+
+\section{Synchronmaschine}
+\begin{tabular}{ll}
+
+  \begin{tabular}{l}
+    \begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
+      \draw[fill=clGray] (0,0) circle (4);
+      \draw[fill=white] (0,0) circle (2.6);
+      \draw[fill=clGray] (0,0) circle (2.5);
+      
+      \foreach \phi/\col in {90/Blue, 75/Blue, 60/Blue, 45/Blue,
+                                -30/Green, -45/Green, -60/Green, -75/Green,
+                                -150/Red, -165/Red, 180/Red, 165/Red}
+      {
+        \draw[fill=white, draw=none] (\phi-3.5:2.55) -- (\phi-3.5:2.9) -- (\phi+3.5:2.9) -- (\phi+3.5:2.55) arc (\phi+3.5:\phi-3.5:2.55);
+        \draw(\phi-3.5:2.6) -- (\phi-3.5:2.9) -- (\phi+3.5:2.9) -- (\phi+3.5:2.6);
+        \draw[fill=cl\col](\phi-2.5:2.6) -- (\phi-2.5:2.85) -- (\phi+2.5:2.85) -- (\phi+2.5:2.6) -- (\phi-2.5:2.6);
+        %\draw[thick, c\col](\phi-2.5:2.6) -- (\phi+2.5:2.85);
+        %\draw[thick, c\col](\phi-2.5:2.85) -- (\phi+2.5:2.6);
+        \draw (\phi:2.725) node {\color{c\col}\rotatebox[origin=c]{\phi}{$\times$}};
+      }
+%       
+      \foreach \phi/\col in {30/Red, 15/Red, 0/Red, -15/Red,
+                             -90/Blue, -105/Blue, -120/Blue, -135/Blue,
+                             150/Green, 135/Green, 120/Green, 105/Green}
+      {
+        \draw[fill=white, draw=none] (\phi-3.5:2.55) -- (\phi-3.5:2.9) -- (\phi+3.5:2.9) -- (\phi+3.5:2.55) arc (\phi+3.5:\phi-3.5:2.55);
+        \draw(\phi-3.5:2.6) -- (\phi-3.5:2.9) -- (\phi+3.5:2.9) -- (\phi+3.5:2.6);
+        \draw[fill=cl\col](\phi-2.5:2.6) -- (\phi-2.5:2.85) -- (\phi+2.5:2.85) -- (\phi+2.5:2.6) -- (\phi-2.5:2.6);
+        \draw[fill=c\col, draw=c\col](\phi:2.72) circle (0.05);
+      }
+
+      \foreach \phi in {140, 150, 160, 170, 180, -170, -160, -150, -140}
+      {
+        \draw [fill=clOrange] (\phi:2.2) circle (0.115);
+        \draw [fill=cOrange, draw=cOrange] (\phi:2.2) circle (0.03);
+      }
+
+      \foreach \phi in {-40, -30, -20, -10, 0, 10, 20, 30, 40}
+      {
+        \draw [fill=clOrange] (\phi:2.2) circle (0.115) node{$\color{cOrange}\times$};
+      }
+      
+      
+    \end{tikzpicture}
+  \end{tabular} &
+  \begin{tabular}{l}
+    \begin{circuitikz}[scale=0.8, transform shape]
+      \draw (0,2) to [short, *-, i = {\large $\cn{I_1}$}] (1,2) to [inductor, l = {\large $jX_d$}] (3,2) to [short, -*] (4,2);
+      \draw (0,0) to [short, *-*] (4,0);
+      \draw[-latex,shorten >=2mm, shorten <=2mm,in=110, out=250] (0,2) to node[right] {\large $\cn{U_1}$} (0,0);
+      \draw[-latex,shorten >=2mm, shorten <=2mm,in=70, out=290] (4,2) to node[left] {\large $\cn{U_p}$} (4,0);
+      \draw[-latex,shorten >=2mm, shorten <=2mm,in=-140, out=-40] (1,2) to node[below] {\large $\cn{U_d}$} (3,2);
+    \end{circuitikz} \\
+    \cdef{$X_d$: Synchronreaktanz} \\
+    \cdef{$X_{\sigma 1}$: Streureaktanz} \\
+    \cdef{$X_{h}$: Hauptreaktanz} \\
+    $X_d = X_{\sigma 1} + X_h$ \\
+    \cdef{$U_p$: Polradspannung} \\
+    \cdef{$U_1$: Netzspannung}
+  \end{tabular}
+
+\end{tabular}
+
+Die Polradspannung $U_p$ ist eine fiktive Hilfsgrösse. In der Ankerwicklung (Erreger) wird ein
+Gleichstrom $I_e$ angelegt, welcher das Feld erzeugt. Im Leerlauf der Maschine entspricht 
+$U_p$ der von dem Erregerstrom induzierten Spannung der Statorwicklung. 
+$$\cn{U_p} = \cn{U_p}(\cn{I_e}) \quad \cn{U_p} = j X_h \cdot \cn{I'_e}, \quad \text{wobei } \cn{I'_e} \text{: Erregerstrom auf Statorseite}$$
+
+So entsteht die Grundgleichung einer Synchronmaschine:
+
+$$\cn{U_1} = \cn{U_d} + \cn{U_p} = jX_d \cdot \cn{I_1} + \cn{U_p}(I_e)$$
+
+\begin{tabular}{ll}
+  \begin{tabular}{l}
+    \begin{tikzpicture}
+      \begin{axis} [
+        width=0.4\columnwidth,
+        height=0.4\columnwidth,
+        title={Leerlauf-Kennlinie},
+        axis lines=middle, 
+        xlabel={$I_e$},
+        ylabel={$U_1$},
+        xmin = 0,
+        xmax = 1,
+        ymin = 0,
+        ymax = 1,
+        xtick = {0.15},
+        ytick = {0.6},
+        xticklabels = {$I_{eN}$},
+        yticklabels = {$U_{1N}$},
+        disabledatascaling
+      ]
+        \draw [draw=cRed, thick] (axis cs:0,0) -- (axis cs:0.1,0.5);
+        \draw [draw=cRed, thick] (axis cs:0.1,0.5) arc [radius=0.2,start angle=0168.69,end angle=101.31]; 
+        \draw [draw=cRed, thick] (axis cs:0.2569, 0.6569) -- (axis cs:1.2569, 0.8569);
+        
+        \draw [dashed] (axis cs:0,0.6) -- (axis cs:0.15,0.6);
+        \draw [dashed] (axis cs:0.15,0) -- (axis cs:0.15,0.6);
+        \draw [fill=black] (axis cs:0.15,0.6) circle (0.02);
+        
+      \end{axis}
+    \end{tikzpicture}
+  \end{tabular} &
+  
+  \begin{tabular}{l}
+    
+    \begin{tikzpicture}
+      \begin{axis} [
+        width=0.4\columnwidth,
+        height=0.4\columnwidth,
+        title={Kurzschluss-Kennlinie},
+        axis lines=middle, 
+        xlabel={$I_e$},
+        ylabel={$I_1$},
+        xmin = 0,
+        xmax = 1,
+        ymin = 0,
+        ymax = 1,
+        xtick = {0.6},
+        ytick = {0.6},
+        xticklabels = {$I_{eN}$},
+        yticklabels = {$I_{K}$},
+      ]
+        \draw [draw=cBlue, thick] (axis cs:0,0) -- (axis cs:0.4,0.4);
+        \draw [dashed, draw=cBlue, thick] (axis cs:0.4,0.4) -- (axis cs:0.9,0.9);
+        
+        \draw [dashed] (axis cs:0,0.6) -- (axis cs:0.6,0.6);
+        \draw [dashed] (axis cs:0.6,0) -- (axis cs:0.6,0.6);
+        \draw [fill=black] (axis cs:0.6,0.6) circle (0.02);
+        
+      \end{axis}
+    \end{tikzpicture}
+  \end{tabular}
+\end{tabular}
+
+\subsection{Zeigerdiagramme}
+Bei den Zeigerdiagrammen einer Synchronmaschine wird als Referenz der Vektor 
+{\color{cBlue}$\cn{U_1}$} gewählt. Danach wird {\color{cRed}$\cn{I_1}$} gesetzt.
+$\cn{I'_e}$ entsteht, indem $I_e$ mit der Richtung (Umdrehung) der Welle multipliziert 
+wird.
+
+\subsubsection{Zeigerdiagramm im Motorbetrieb: $P > 0$, $\delta > 0$}
+
+\begin{tabular}{c|c}
+    Untererregt: $U_p < U_1$ (induktiv $\varphi > 0$) &
+    Übererregt: $U_p > U_1$ (kapazitiv: $\varphi < 0$) \\
+  \begin{tabular}{c}
+    \begin{tikzpicture}
+      %zeiger
+      \draw [>=latex, ->, draw=cBlue, thick, line width=0.3mm] (0,0) -- (0,3) node[left]{\color{cBlue}$\cn{U_1}$}; 
+      \draw [dashed] (0,0) -- (60:3.6);
+      \draw [>=latex, ->, draw=cRed, thick, line width=0.3mm] (0,0) -- (60:2) node[right]{\color{cRed}$\cn{I_1}$};
+      \draw [dashed] (0,3) -- + (-30:1.5);
+      \draw [>=latex, <-, thick, line width=0.3mm, draw=black] (0,3) -- + (-30:1);
+      \draw (0,3) node [above right] {$jX_d \cdot \cn{I_1}$};
+      \draw [>=latex, ->, thick, line width=0.3mm, draw=black] (0,0) -- (0.866,2.5) node[below left, xshift=-1mm, yshift=3mm]{$\cn{U_p}$}; %70.89 Deg
+      \draw [>=latex, ->, thick, line width=0.3mm, draw=black] (0,0) -- (-19.11:1.6) node[above]{$\cn{I'_e}$};
+      
+      %winkel
+      \draw [>=latex, ->, thick, line width=0.3mm, draw=black] (60:1.5) arc (60:90:1.5) node[below right]{$\varphi$};
+      \draw [>=latex, ->, thick, line width=0.3mm, draw=black] (70.89:2) arc (70.89:90:2) node[below right] {$\delta$};
+      \draw [line width=0.2mm, draw=black] (60:2.3) arc (-120:-210:0.298) node [below right, xshift=-0.8mm]{$\cdot$};
+      \draw [line width=0.2mm, draw=black] (-19.11:0.3) arc (-19.11:70.89:0.3) node[below, xshift=0.5mm]{$\cdot$}; 
+    \end{tikzpicture} 
+  
+  \end{tabular} &
+  \begin{tabular}{c}
+    \begin{tikzpicture}
+      %Zeiger
+      \draw [>=latex, ->, draw=cBlue, thick, line width=0.3mm] (0,0) -- (0,3) node[below right]{\color{cBlue}$\cn{U_1}$}; 
+      \draw [dashed] (0,0) -- (105:3.2);
+      \draw [>=latex, ->, draw=cRed, thick, line width=0.3mm] (0,0) -- (105:2) node[left]{\color{cRed}$\cn{I_1}$};
+      \draw [dashed] (0,3) -- + (-165:0.7);
+      \draw [>=latex, <-, thick, line width=0.3mm, draw=black] (0,3) -- + (15:1.5) node[left, yshift=3mm]{$jX_d \cdot \cn{I_1}$};
+      \draw [>=latex, ->, thick, line width=0.3mm, draw=black] (0,0) -- (1.4489, 3.3882) node[below right]{$\cn{U_p}$}; %66.85 Deg
+      \draw [>=latex, ->, thick, line width=0.3mm, draw=black] (0,0) -- (-23.1527:1.6) node[above]{$\cn{I'_e}$};
+      
+      %Winkel
+      \draw [>=latex, ->, thick, line width=0.3mm, draw=black] (105:1.5) arc (105:90:1.5) node[below left, xshift=1mm]{$\varphi$};
+      \draw [>=latex, ->, thick, line width=0.3mm, draw=black] (66.85:2) arc (66.85:90:2) node[below right]{$\delta$};
+      \draw [line width=0.2mm, draw=black] (105:2.598) arc (-75:15:0.3) node[below left, xshift=0.5mm]{$\cdot$};
+      \draw [line width=0.2mm, draw=black] (-23.1527:0.3) arc (-23.15:66.85:0.3) node[below, xshift=0.5mm]{$\cdot$};
+    \end{tikzpicture}
+  \end{tabular}
+\end{tabular}
+
+\subsubsection{Zeigerdiagramm im Generatorbetrieb: $\delta > 0$}
+
+\begin{tabular}{c|c}
+  Übererregt: $U_p > U_1$ (kapatiziv: $\varphi < 0$) &
+  Untererregt: $U_P < U_1$ (induktiv: $\varphi > 0$) \\
+  \begin{tabular}{c}
+    \begin{tikzpicture}
+      \draw [>=latex, ->, draw=cBlue, thick, line width=0.3mm] (0,0) -- (90:2.5) node[right]{\color{cBlue}$\cn{U_1}$}; 
+      \draw [>=latex, ->, draw=cRed,  thick, line width=0.3mm] (0,0) -- (-130:2) node[right]{\color{cRed}$\cn{I_1}$};
+      \draw [dashed] (0,0) -- (50:3.2);
+      \draw [>=latex, <-, draw=black, thick, line width=0.3mm] (90:2.5) -- + (140:1.2) node[right, xshift=1mm]{$jX_d \cdot \cn{I_1}$};
+      \draw [dashed] (90:2.5) -- + (-40:1.6);
+      \draw [>=latex, ->, draw=black, thick, line width=0.3mm] (0,0) -- (-0.9193, 3.2714) node[below left] {$\cn{U_p}$}; %105.695 deg
+      \draw [>=latex, ->, draw=black, thick, line width=0.3mm] (0,0) -- (15.695:1.7) node[below]{$\cn{I'_e}$};
+      
+      \draw [>=latex, ->, draw=black, thick, line width=0.3mm] (-130:1.5) arc (-130:-270:1.5);
+      \draw (160:1.2) node {$\varphi$};
+      \draw [>=latex, ->, draw=black, thick, line width=0.3mm] (105.7:2) arc (105.7:90:2) node[below left]{$\delta$};
+      \draw [line width=0.2mm, draw=black] (50:1.615) arc (-130:-220:0.3) node[below, xshift=0.5mm]{$\cdot$};
+      \draw [line width=0.2mm, draw=black] (15.695:0.3) arc (15.695:105.695:0.3) node[below right, yshift = 0.4mm, xshift=-0.1mm]{$\cdot$};      
+    \end{tikzpicture}
+  \end{tabular} &
+  \begin{tabular}{c}
+    \begin{tikzpicture}
+      \draw [>=latex, ->, draw=cBlue, thick, line width=0.3mm] (0,0) -- (90:3) node[right]{\color{cBlue}$\cn{U_1}$}; 
+      \draw [>=latex, ->, draw=cRed,  thick, line width=0.3mm] (0,0) -- (-70:2) node[right]{\color{cRed}$\cn{I_1}$};
+      \draw [dashed] (0,0) -- (110:3.3);
+      \draw [>=latex, <-, draw=black, thick, line width=0.3mm] (90:3) -- + (-160:1.2) node[above, xshift=-2mm, yshift=0.5mm]{$jX_d \cdot \cn{I_1}$}; %113.51 Deg
+      \draw [>=latex, ->, draw=black, thick, line width=0.3mm] (0,0) -- (-1.128,2.59) node[below left]{$\cn{U_p}$};
+      \draw [>=latex, ->, draw=black, thick, line width=0.3mm] (0,0) -- (23.53:1.6) node[above]{$\cn{I'_e}$};
+      
+      \draw [>=latex, ->, draw=black, thick, line width=0.3mm] (-70:1) arc (-70:90:1);
+      \draw (-30:0.7) node {$\varphi$};
+      \draw [>=latex, ->, draw=black, thick, line width=0.3mm] (113.51:1.5) arc (113.51:90:1.5) node[below left]{$\delta$};
+      \draw [line width=0.2mm, draw=black] (110:2.5) arc (-70:20:0.3) node[below left, xshift=0.5mm]{$\cdot$};
+      \draw [line width=0.2mm, draw=black] (23.53:0.3) arc (23.53:113.53:0.3) node[below right, yshift = 0.4mm, xshift=-0.1mm]{$\cdot$};      
+   
+      
+    \end{tikzpicture}
+  \end{tabular}
+\end{tabular}
+
+\subsection{Leistung}
+$$P(\delta) = 3 \cdot \frac{U_p U_1}{X_d} \cdot \sin{\delta} = \left\{ \begin{array}{ll}
+P_{mech} - P_V = \omega \cdot M - P_V & \text{wenn Generator} \\
+P_{mech} + P_V = \omega \cdot M + P_V & \text{wenn Motor} \\
+\end{array} \right.$$
+
+\begin{center}
+  \begin{tikzpicture}
+    \begin{axis} [
+        width=0.7\columnwidth,
+        height=0.4\columnwidth,
+        axis lines=middle, 
+        xlabel={$\delta$},
+        ylabel={$P(\delta)$},
+        xtick = {-45, 45,},
+        xticklabels = {$-\frac{\pi}{4}$, $\frac{\pi}{4}$},
+        ytick = {0},
+        yticklabels = {},
+        xmin = -150,
+        xmax = 150,
+        ymin = -1.4,
+        ymax = 1.4,
+    ]
+      \addplot[draw=cRed, thick, domain=-90:90]{sin(x)};
+      \draw [draw=cBlue, fill=clBlue, thick] (axis cs:-90,-1.2) rectangle (axis cs:-94,1.2);
+      %\draw [draw=none, fill=white] (axis cs:-94.5,1.2) rectangle (axis cs:-150,-1.2);
+      \draw [draw=cBlue, fill=clBlue, thick] (axis cs: 90,-1.2) rectangle (axis cs: 94,1.2);
+      %\draw [draw=none, fill=white] (axis cs:94.5,1.2) rectangle (axis cs:150,-1.2);
+      \draw (axis cs:-140,0) node [rotate=90, anchor=north]{Stabilitätsgrenze};
+      \draw (axis cs:-120,0) node [rotate=90, anchor=north]{$\delta < -90$};
+      \draw (axis cs: 95,0) node [rotate=90, anchor=north]{Stabilitätsgrenze};
+      \draw (axis cs: 115,0) node [rotate=90, anchor=north]{$\delta > +90$};
+      
+    \end{axis}
+  \end{tikzpicture}
+\end{center}
+
+\section{Synchronmaschine}
+\begin{tabular}{ll}
+
+  \begin{tabular}{l}
+    \begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
+      \draw[fill=clGray] (0,0) circle (4);
+      \draw[fill=white] (0,0) circle (2.6);
+      \draw[fill=clGray] (0,0) circle (2.5);
+      
+      \foreach \phi/\col in {90/Blue, 75/Blue, 60/Blue, 45/Blue,
+                                -30/Green, -45/Green, -60/Green, -75/Green,
+                                -150/Red, -165/Red, 180/Red, 165/Red}
+      {
+        \draw[fill=white, draw=none] (\phi-3.5:2.55) -- (\phi-3.5:2.9) -- (\phi+3.5:2.9) -- (\phi+3.5:2.55) arc (\phi+3.5:\phi-3.5:2.55);
+        \draw(\phi-3.5:2.6) -- (\phi-3.5:2.9) -- (\phi+3.5:2.9) -- (\phi+3.5:2.6);
+        \draw[fill=cl\col](\phi-2.5:2.6) -- (\phi-2.5:2.85) -- (\phi+2.5:2.85) -- (\phi+2.5:2.6) -- (\phi-2.5:2.6);
+        %\draw[thick, c\col](\phi-2.5:2.6) -- (\phi+2.5:2.85);
+        %\draw[thick, c\col](\phi-2.5:2.85) -- (\phi+2.5:2.6);
+        \draw (\phi:2.725) node {\color{c\col}\rotatebox[origin=c]{\phi}{$\times$}};
+      }
+%       
+      \foreach \phi/\col in {30/Red, 15/Red, 0/Red, -15/Red,
+                             -90/Blue, -105/Blue, -120/Blue, -135/Blue,
+                             150/Green, 135/Green, 120/Green, 105/Green}
+      {
+        \draw[fill=white, draw=none] (\phi-3.5:2.55) -- (\phi-3.5:2.9) -- (\phi+3.5:2.9) -- (\phi+3.5:2.55) arc (\phi+3.5:\phi-3.5:2.55);
+        \draw(\phi-3.5:2.6) -- (\phi-3.5:2.9) -- (\phi+3.5:2.9) -- (\phi+3.5:2.6);
+        \draw[fill=cl\col](\phi-2.5:2.6) -- (\phi-2.5:2.85) -- (\phi+2.5:2.85) -- (\phi+2.5:2.6) -- (\phi-2.5:2.6);
+        \draw[fill=c\col, draw=c\col](\phi:2.72) circle (0.05);
+      }
+
+      \foreach \phi in {5,25,...,345}
+      {
+        \draw[fill=white, draw=none] (\phi-2:2.55) -- (\phi-2:2.06) -- (\phi+2:2.06) -- (\phi+2:2.55);  
+        \draw (\phi-2:2.5) -- (\phi-2:2.06) -- (\phi+2:2.06) -- (\phi+2:2.5);
+        \draw[fill=clOrange] (\phi-1:2.4) -- (\phi+1:2.4) -- (\phi+1:2.1) -- (\phi-1:2.1) -- (\phi-1:2.4);
+      }
+      
+      \draw (65:1.6) circle (0.12);
+      \draw (65:1.6) node{$\times$}; 
+      \draw (65:1.6) node[right] {$I_2$};
+      \draw [>=latex, ->, draw=cBlue, shorten <=0.11cm] (65:1.6) -- ++(245:0.8) node[right] {\color{cBlue} $B_1$};
+      \draw [>=latex, ->, draw=cRed,  shorten <=0.11cm] (65:1.6) -- ++(155:1)   node[below] {\color{cRed}  $F_1$};
+      
+      \draw [color=cGreen] (0,0) circle (0.12);
+      \draw (0,0) node[right] {\color{cGreen} $M$};
+      \draw (0,0) node[yshift=-0.1] {\color{cGreen} $\cdot$}; 
+      
+      \draw [>=latex, ->] (200:3.4) arc (200:240:3.4) node[midway, left] {$n_1$};
+      \draw [>=latex, ->] (200:1.4) arc (200:240:1.4) node[midway, left] {$n$};
+      
+    \end{tikzpicture}
+  \end{tabular} &
+  \begin{tabular}{ll}
+    \cdef{$n_1$}  & \cdef{Synchrone Drehzahl (Drehfeld)} \\
+    \cdef{$n$}    & \cdef{Drehzahl des Läufers} \\
+    \cdef{$n_2$}  & \cdef{Relative Drehzanl}\\
+    \cdef{$s$}    & \cdef{Schlupf} \\
+    \cdef{$I_2$}  & \cdef{Induzierter Strom} \\
+    \multicolumn{2}{l}{$n_2 = n_1 - n$} \\
+    \multicolumn{2}{l}{$\fmm s = \frac{n_2}{n_1} = \frac{n_1 - n}{n_1} = \frac{f_2}{f_1}$} \\
+    \multicolumn{2}{l}{$\fmm I_2 = \frac{U_{i20}}{\sqrt{ \left( \frac{R_2}{s} \right)^2 + X_{2\sigma}^2 }}$}
+  \end{tabular}
+\end{tabular}
+
+\begin{center}
+  \begin{tabular}{ll}
+    \textbf{Stillstand} & \textbf{Synchroner Lauf} \\
+    \midrule
+    $s = 1 \quad f_2 = f_1$ & $s = 0 \quad f_2 = 0$ \\
+    $\fmm I_2 = I_{2_{max}} = \frac{U_{i20}}{\sqrt{ R_2^2 + X_{2\sigma}^2 }}$ &
+    $I_2 = I_{2_{min}} = 0$
+  \end{tabular}
+\end{center}
+
+\subsection{Leistung}
+\cdef{$P_1$: primäre Netzleistung, $P_{Cu}$: Ohmsche Verluste, $P_{Fe}$: Blechkernverluste, 
+$P_{D1}$: Drehfeldleistung, $P_m$: mechanische Leistung, $P_R$: Reibungsverluste und Lüftung,
+$P_{m}'$: mechanische Nutzleistung}
+
+$$P_m' = P_m - P_R = P_{D1} - P_{Cu2} - P_R = P_1 - P_{Cu1} - P_{Fe} - P_{Cu2} - P_R $$
+$$P_{D1} = 2 \pi \cdot n_1 \cdot M \qquad P_{m} = 2 \pi \cdot n \cdot M$$
+$$M = \frac{1}{2 \pi \cdot n_1} \frac{P_{Cu2}}{s} = 
+\frac{q_2 \cdot U_{i20}^2 \cdot R_2}{2 \pi n_1 s \cdot \left(\left(\frac{R_2}{s}\right)^2 + X_{2\sigma}^2\right)}$$
+
+\begin{center}
+  \begin{tikzpicture}
+    \begin{axis} [
+      xmin = -1.6,
+      xmax = 1.6,
+      ymin = -1.2,
+      ymax = 1.2,
+      xlabel={$s$},
+      ylabel={$M$},
+      width=0.9\columnwidth,
+      height=0.6\columnwidth,
+      axis lines=middle,
+      x dir=reverse,
+      xtick={-1,-0.5,-0.2,0.2,0.5,1},
+      xticklabels={-1,-0.5,$-s_k$,$s_k$,0.5,1},
+      ytick={-1},
+      yticklabels={$-M_k$},
+      extra y ticks = {0.3846, 1},
+      extra y tick labels = {$M_A$,$M_K$},
+      extra y tick style = {y tick label style={right}},
+      every axis y label/.style={
+        at={(ticklabel* cs:1)},
+        anchor=south,
+      },
+    ]
+      
+      \draw [draw=none, fill=clRed, opacity=0.5] (axis cs:1,0) rectangle (axis cs:1.6,1.2);
+      \draw (axis cs:1.3,1) node {Bremse};
+      
+      \draw [draw=none, fill=clBlue, opacity=0.5] (axis cs:1,0) rectangle (axis cs:0,1.2);
+      \draw (axis cs:0.7,1) node {Motor};
+      
+      \draw [draw=none, fill=clGreen, opacity=0.5] (axis cs:0,0) rectangle (axis cs:-1.6,-1.2);
+      \draw (axis cs:-1.2,-1) node{Generator};
+      
+      \addplot[cRed,   thick, domain=-1.6:0.02, samples=150] {2/((x/0.2)+(0.2/x))};
+      \addplot[cGreen, thick, domain=0.02:0.08, samples=150] {2/((x/0.2)+(0.2/x))};
+      \addplot[cRed,   thick, domain=0.08:1.6,  samples=150] {2/((x/0.2)+(0.2/x))};
+      
+      \draw [dashed] (axis cs:1,0) -- (axis cs:1,0.3846) -- (axis cs:0,0.3846);
+      \draw [cRed, fill=cRed] (axis cs:1,0.3846) circle (1mm);
+      
+      \draw [dashed] (axis cs:0.2,0) -- (axis cs:0.2,1) -- (axis cs:0,1);
+      \draw [cRed, fill=cRed] (axis cs:0.2,1) circle (1mm);
+      
+      \draw [>=latex, ->] (axis cs:0.8,0.55) arc (-70:-55:2.6cm) node[midway, above, rotate=25]{Anlauf};
+      
+      \draw [>=latex, ->, cGreen] (axis cs:-0.5,0.8) node[right] {\color{cGreen} Normalbetrieb} -- (axis cs:0.04,0.5);
+    
+    \end{axis}
+  \end{tikzpicture}
+  
+\cdef{$M_k$: Kippmoment, $M_A$: Anlaufmoment, $s_k$: Kippschlupf}
+\end{center}
+
+\subsection{Modell der Asynchronmaschine}
+
+\begin{center}
+  \begin{circuitikz} [scale=0.8, transform shape]
+    \draw (0,3) to [short, o-, i={\large $\cn{I_1}$}] (1,3) to [R, l={\large $R_1$}] (3,3) 
+      to [L, l={\large $X_{\sigma 1}$}] (5,3) to [short] (8,3) 
+      to [L, l={\large $X'_{\sigma 2}$}] (10,3) to [short, i={\large $\cn{I_2'}$}] (11,3) 
+      to [R, l={\large $\frac{R_2'}{s}$}] (11,0) to [short, -o] (0,0);
+    \draw (5.5,0) to [R, l^={\large $R_{Fe}$}, i<^={\large $\cn{I_{Fe}}$}, *-*] (5.5,3);
+    \draw (6.5,0) to [L, l_={\large $X_{h}$}, i<_={\large $\cn{I_{\mu}}$}, *-*] (6.5,3);
+    \draw [>=latex, ->, bend left=20, shorten >=2mm, shorten <=2mm](7.5,3) to node[right] {\large $\cn{U_h}$} (7.5,0); 
+    \draw [>=latex, ->, bend right=20, shorten >=2mm, shorten <=2mm](0,3) to node[left] {\large $\cn{U_1}$} (0,0); 
+  \end{circuitikz}
+\end{center}
+
+\begin{tabular}{ll}
+  \begin{dtabular}
+    $N$ & Windungszahl \\
+    $k_w$ & Wicklungsfaktor \\
+    $R_{Fe}$ & Eisen-Verlustwiederstand \\
+    $X_{h}$ & Hauptreaktanz \\
+    $\cn{U_h}$ & innere Spannung   \\
+    $\cn{I_{\mu}}$ & Magnetisierungsstrom \\
+    $u$ & Übersetzungsverhältnis \\
+    $I_0$ & Leerlaufstrom \\
+  \end{dtabular} &
+  \begin{mtabular}{l}
+    $\fmm \cn{I_1} = \cn{I_{Fe}} + \cn{I_\mu} + \cn{I_{2}'}$ \\
+    $\fmm \cn{U_1} = R_1 \cdot \cn{I_1} + j X_{\sigma 1} \cn{I_1} + \cn{U_h}$ \\
+    $\fmm u = \frac{N_1 \cdot k_{w1}}{N_2 \cdot k_{w2}}, \quad \cn{I_2'} = \cn{I_2} \cdot u, 
+      \quad  R_{2}' = R_2 \cdot u^2$ \\
+    $\fmm \cn{I_0} = \cn{I_{Fe}} + \cn{I_\mu}$ \\
+  \end{mtabular}
+\end{tabular}
+
+\subsection{Zeigerdiagramm}
+\begin{center}
+  \begin{tikzpicture}
+    \draw [>=latex, ->, thick, line width=0.3mm] (0,0) -- (0,3) node[above]{$\cn{U_1}$}; 
+    \draw [>=latex, ->, thick, line width=0.3mm, color=cRed]  (0,0) -- (10:1) node[above] {\color{cRed} $\cn{I_0}$};
+    \draw [>=latex, ->, thick, line width=0.3mm, color=cBlue] (0,0) -- (-15:0.906) node[below left] {\color{cBlue} $\cn{I_{\mu}}$};
+    \draw [>=latex, ->, thick, line width=0.3mm, color=cBlue] (-15:0.906) -- (10:1) node[below right] {\color{cBlue} $\cn{I_{Fe}}$};
+    \draw [>=latex, ->, thick, line width=0.3mm, color=cGreen] (0,0) -- (40:2.3) node[above] {\color{cGreen} $\cn{I_1}$};
+    \draw [>=latex, ->, thick, line width=0.3mm, color=cGreen] (10:1) -- (40:2.3) node[below right] {\color{cGreen} $\cn{I'_2}$};
+    \draw [>=latex, ->, thick, line width=0.3mm] (0,0) -- (75:2) node[right]{$\cn{U_h}$}; 
+    \draw [>=latex, <-, thick, line width=0.3mm] (0,3) -- ++ (220:0.3) node[above left] {$R_1 \cdot \cn{I_1}$} ;
+    \draw [>=latex, ->, thick, line width=0.3mm] (75:2) -- (94.68:2.817) node[below left] {$j X_{\sigma 1} \cdot \cn{I_1}$};
+ 
+    %angles
+    \draw [line width=0.2mm] (-15:0.3) arc (-15:75:0.3) node[below,xshift=1mm] {$\cdot$};
+    \draw [>=latex, ->, line width=0.2mm] (90:1.2) arc (90:40:1.2) node[midway, below] {$\varphi$};
+  \end{tikzpicture}
+\end{center}
+
+\subsection{Leerlauf}
+Hier wird die Asynchronmaschine an der Welle nicht belastet. 
+
+\begin{tabular}{ll}
+  \begin{mtabular}{l}
+    $\fmm R_1 \ll R_{Fe}, \quad X_{\sigma 1} \ll X_h$ \\
+    $\fmm R_{Fe} = \frac{U_0}{I_{Fe}} = \frac{U_0}{I_0 \cdot \cos{\varphi_0}}$ \\
+    $\fmm X_{h} = \frac{U_0}{I_{\mu}} = \frac{U_0}{I_0 \cdot \sin{\varphi_0}}$ \\
+  \end{mtabular} &
+  \begin{tabular}{l}
+    \begin{circuitikz} [scale=0.8, transform shape]
+    \draw (0,2.5) to [short, o-, i={\large $\cn{I_1}$}] (3,2.5) to [short] (4,2.5);
+    \draw (3,0) to [R, l^={\large $R_{Fe}$}, i<^={\large $\cn{I_{Fe}}$}, *-*] (3,2.5);
+    \draw (4,0) to [L, l_={\large $X_{h}$}, i<_={\large $\cn{I_{\mu}}$}] (4,2.5);
+    \draw (4,0) to [short, -o] (0,0);
+    \draw [>=latex, ->, bend right=20, shorten >=2mm, shorten <=2mm](0,2.5) to node[left] {\large $\cn{U_0}$} (0,0); 
+    \end{circuitikz}
+  \end{tabular}
+\end{tabular}
+
+\subsection{Kurzschluss}
+Hier wird die Welle der Asynchronmaschine blokiert ($s = 1$).
+
+\begin{center}
+  \begin{circuitikz}
+    \draw (0,2) to [short, o-, i={\large $\cn{I_k}$}] (1,2) to [R, l={\large $R_1$}] (3,2)
+      to [L, l={\large $X_{\sigma 1}$}] (5,2) to [short] (6,2) to [L, l={\large $X_{\sigma 2}'$}] (8,2)
+      to [short, i={\large $\cn{I'_2}$}] (9,2) to [R, l={\large $R'_2$}] (9,0) to [short, -o] (0,0);
+    \draw [>=latex, ->, bend right=20, shorten >=2mm, shorten <=2mm] (0,2) to [short] (0,0) node[left] {\large $\cn{U_k}$};
+  \end{circuitikz}
+\end{center}
+
+$$R_1 + R'_2 = \frac{U_R}{I_K} = \frac{U_K \cdot \cos{\varphi_K}}{I_K} \qquad 
+X_{\sigma 1} + X'_{\sigma 2} = \frac{U_X}{I_K} = \frac{U_K \cdot \sin{\varphi_k}}{I_K}$$
+
+\section{Schrittmotor}
+
+\begin{tabular}{ll}
+
+  \begin{tabular}{l}
+    \begin{tikzpicture} [scale=0.8, every node/.style={scale=0.8}]
+      %Kern
+      \draw [fill=clGray] (0,0) circle (4);
+      \draw (0,3.4) node{Ständer}; 
+      \draw [fill=white] (0,0) circle (3);
+      
+      %Zähne
+      \draw [fill=clGray, draw=none] (-0.5,3) -- (0,3.3) -- (0.5,3) -- (0.5,1.75) arc (74.055:105.95:1.82) -- (-0.5,3);
+      \draw (0.5,2.958) -- (0.5,1.75) arc (74.055:105.95:1.82) -- (-0.5,2.958);
+      
+      \draw [fill=clGray, draw=none] (-0.5,-3) -- (0,-3.3) -- (0.5,-3) -- (0.5,-1.75) arc (-74.055:-105.95:1.82) -- (-0.5,-3);
+      \draw (0.5,-2.958) -- (0.5,-1.75) arc (-74.055:-105.95:1.82) -- (-0.5,-2.958);
+      
+      \draw [fill=clGray, draw=none] (3, -0.5) -- (3.3,0) -- (3,0.5) -- (1.75,0.5) arc (15.945:-15.945:1.82) -- (3,-0.5);
+      \draw (2.958,0.5) -- (1.75,0.5) arc (15.945:-15.945:1.82) -- (2.958,-0.5); 
+      
+      \draw [fill=clGray, draw=none] (-3, -0.5) -- (-3.3,0) -- (-3,0.5) -- (-1.75,0.5) arc (164.055:195.945:1.82) -- (-3,-0.5);
+      \draw (-2.958,0.5) -- (-1.75,0.5) arc (164.055:195.945:1.82) -- (-2.958,-0.5);      
+      
+      %Wicklungen
+      \draw[preaction={fill, clRed}, pattern=north west lines, pattern color=cRed] (0.55, 2.05) rectangle (1.15,2.65);
+      \draw[preaction={fill, clRed}, pattern=north west lines, pattern color=cRed] (-0.55, 2.05) rectangle (-1.15,2.65);
+      \draw[preaction={fill, clRed}, pattern=north west lines, pattern color=cRed] (0.55, -2.05) rectangle (1.15,-2.65);
+      \draw[preaction={fill, clRed}, pattern=north west lines, pattern color=cRed] (-0.55, -2.05) rectangle (-1.15,-2.65);
+      
+      \draw[preaction={fill, clBlue}, pattern=north west lines, pattern color=cBlue] (2.05,0.55) rectangle (2.65,1.15);
+      \draw[preaction={fill, clBlue}, pattern=north west lines, pattern color=cBlue] (2.05,-0.55) rectangle (2.65,-1.15);
+      \draw[preaction={fill, clBlue}, pattern=north west lines, pattern color=cBlue] (-2.05,0.55) rectangle (-2.65,1.15);
+      \draw[preaction={fill, clBlue}, pattern=north west lines, pattern color=cBlue] (-2.05,-0.55) rectangle (-2.65,-1.15);
+      
+      %rotor
+      \draw [fill=clGray, draw=black] (-80:1.65) arc (-80:-42.364:1.65) -- (100:1.65) arc (100:137.638:1.65) -- (-80:1.65);
+      \draw (0,0) node [rotate=-61.181] {Rotor};
+      
+      %nodes
+      \draw (90:2.25) circle (0.2) node{1};
+      \draw (180:2.25) circle (0.2) node{2};
+      \draw (-90:2.25) circle (0.2) node{3};
+      \draw (0:2.25) circle (0.2) node{4};
+      
+      \draw (118.819:1.2) circle (0.2) node{5};
+      \draw (-61.181:1.2) circle (0.2) node{6};
+      
+      %achsen
+      \draw [cOrange] (118.819:1.65) -- (118.819:2.2) node[left, yshift=-3mm] {d-Achse};
+      \draw [cOrange] (-61.181:1.65) -- (-61.181:2.2);
+        
+      \draw [cOrange] (-151.181:0.53) -- (-151.181:1.8) node[below, xshift=5mm] {q-Achse};
+      \draw [cOrange] (28.819:0.53) -- (28.819:1.8);
+      
+      %angle
+      \draw [cOrange] (0:0.61) -- (0:1.5);
+      \draw [cOrange] (0:1.2) arc (0:28.819:1.2) node[midway, left, yshift=-1mm] {$\gamma_r$};
+      
+    \end{tikzpicture}
+  \end{tabular} &
+  \begin{tabular}{l}
+    \circled{1}: Statorzahn- und Wicklung 1 \\
+    \circled{2}: Statorzahn- und Wicklung 2 \\
+    \circled{3}: Statorzahn- und Wicklung 3 \\
+    \circled{4}: Statorzahn- und Wicklung 4 \\
+    \circled{5}: Rotorzahn 1 \\
+    \circled{6}: Rotorzahn 2 \\
+  \end{tabular}
+\end{tabular}
+
+Diese Grafik ist nicht realistisch. Normalerweise sind viel mehr Statorzähne vorhanden.
+Der Rotor kann aus Eisen, sowie aus einem Permamentmagnet bestehen. Wenn er ein
+Permamentmagnet ist, so kann dieser auch abstossend wirken. So kann die Richtung gewechselt
+werden.
+
+\begin{tabular}{ll}
+  \begin{dtabular}
+    $Z_s$ & Stator-Zahnzahl \\
+    $Z_R$ & Rotor-Zahnzahl \\
+    $\alpha_S$ & Stator-Winkel \\
+    $\alpha_R$ & Rotor-Winkel \\
+    $\alpha_0$ & Vollschritt-Winkel \\
+    $m$ & Strangzahl \\
+    $N_p$ & Schrittzahl \\
+    $f_s$ & Steuerfrequenz \\
+    $L_d$ & Ind. in d-Achse \\
+    $L_q$ & Ind. in q-Achse \\
+    $A_Z$ & Fläche eines Zahns \\
+  \end{dtabular} &
+  \begin{mtabular}{l}
+    $\fmm \alpha_S = \frac{2 \pi}{Z_S} \qquad \alpha_R = \frac{2 \pi}{Z_R}$ \\
+    $\fmm \alpha_0 = \alpha_R - \alpha_S \qquad m = \frac{Z_S}{Z_S - Z_R}$ \\
+    $\fmm N_p = \frac{2\pi}{\alpha_0} \qquad f_s = N_p \cdot \frac{n}{60}$ \\
+    $\fmm L_d = 2 N \cdot \frac{\Phi}{I_1} = 2N^2 \cdot \mu_0 \cdot \frac{A_Z}{\delta_d}$ \\
+    $\fmm L_q = 2 N \cdot \frac{\Phi}{I_1} = 2N^2 \cdot \mu_0 \cdot \frac{A_Z}{\delta_q}$ \\
+  \end{mtabular}
+\end{tabular}
+
+\subsection{Drehmoment und Leistung}
+
+\begin{tabular}{ll}
+  \begin{dtabular}
+    $W_m$ & mechanische Energie \\
+    $L_d$ & Induktivität in d-Achse \\
+    $L_q$ & Induktivität in q-Achse \\
+    $\delta_d$ & Kleinster Luftspalt \\
+    $\delta_q$ & grösster Luftspalt \\
+    $m_M$ & Motormoment \\
+    $J_g$ & gesamtes Trägheitsmoment \\
+    $M_M$ & Drehmoment des Motors
+  \end{dtabular} &
+  \begin{mtabular}{l}
+    $\fmm M = \frac{dW_m}{d\varphi} = \frac{1}{2}I^2 \cdot \frac{dL(\varphi)}{d\varphi}$ \\
+    $\fmm L_d = 2 \cdot N^2 \cdot \mu_0 \cdot \frac{A_z}{\delta_d}$ \\
+    $\fmm L_q = 2 \cdot N^2 \cdot \mu_0 \cdot \frac{A_z}{\delta_q}$ \\
+  \end{mtabular}
+\end{tabular}
+
+\begin{center}
+  \begin{tikzpicture}
+    \draw [draw=none, fill=clGray] (0,2.2) -- (1,2.2) -- (1,1.2) -- (1.6,1.2) -- (1.6,2.2) -- (2.6,2.2) -- (2.6,1.2) -- (3.2,1.2) -- (3.2,2.2) -- (4.2,2.2) -- (4.2,1.2) -- (4.8,1.2) -- (4.8,2.2) -- (5.8,2.2) -- (5.8,1.2) -- (6.4,1.2) -- (6.4,2.2) -- (7.4,2.2) -- (7.4,3) -- (0,3) -- (0,2.2); 
+    \draw (0,2.2) -- (1,2.2) -- (1,1.2) -- (1.6,1.2) -- (1.6,2.2) -- (2.6,2.2) -- (2.6,1.2) -- (3.2,1.2) -- (3.2,2.2) -- (4.2,2.2) -- (4.2,1.2) -- (4.8,1.2) -- (4.8,2.2) -- (5.8,2.2) -- (5.8,1.2) -- (6.4,1.2) -- (6.4,2.2) -- (7.4,2.2); 
+    \draw (6,2.6) node {Stator};
+    \draw[preaction={fill, clRed}, pattern=north west lines, pattern color=cRed] (0.95,2) rectangle (0.65,1.4);
+    \draw[preaction={fill, clRed}, pattern=north west lines, pattern color=cRed] (1.65,2) rectangle (1.95,1.4);
+    \draw[preaction={fill, clRed}, pattern=north west lines, pattern color=cRed] (4.15,2) rectangle (3.85,1.4);
+    \draw[preaction={fill, clRed}, pattern=north west lines, pattern color=cRed] (4.85,2) rectangle (5.15,1.4);
+      
+    \draw [dashed] (1.3,1) -- (0.5,1) (0.5,1.2) -- (1,1.2);
+    \draw [>=latex, ->] (0.5,0.6) -- (0.5,1);
+    \draw [>=latex, ->] (0.5,1.6) -- (0.5,1.2);
+    \draw (0.5,1.1) node[left] {$\delta_d$};
+    
+    \draw [>=latex, <->] (6.1,1.2) -- (6.1,0);
+    \draw (6.1,0.6) node[right] {$\delta_q$};
+    
+    
+    \draw [draw=none, fill=clGray] (0,0) -- (1.3,0) -- (1.3,1) -- (1.9,1) -- (1.9,0) -- (4.5,0) -- (4.5,1) -- (5.1,1) -- (5.1,0) -- (7.4,0) -- (7.4,-0.8) -- (0,-0.8) -- (0,0); 
+    \draw (0,0) -- (1.3,0) -- (1.3,1) -- (1.9,1) -- (1.9,0) -- (4.5,0) -- (4.5,1) -- (5.1,1) -- (5.1,0) -- (7.4,0); 
+    \draw (6,-0.4) node{Rotor};
+    
+    
+   
+  \end{tikzpicture}
+\end{center}
+
+\begin{center}
+  \begin{tikzpicture}
+    \begin{axis} [
+      xmin = 0.996,
+      xmax = 5.29,
+      ymin = 0,
+      ymax = 1.4,
+      xlabel={$\gamma_r$},
+      ylabel={$L$},
+      width=0.6\columnwidth,
+      height=0.4\columnwidth,
+      axis lines=middle,
+      xtick={3.142},
+      xticklabels={$\alpha_0$},
+      ytick={0.2,1.2},
+      yticklabels={$L_q$, $L_d$},
+      legend pos=outer north east,
+      legend style={draw=none},
+    ]
+      
+      \addplot [thick, color=cBlue] coordinates {
+        (0.997,1.2)(3.142,0.2)(5.29,1.2)
+      };
+      \addlegendentry{Lineare Annäherung};
+      
+      \addplot [thick, color=cRed] coordinates {
+        (0.99700,1.20000)(1.01857,1.19942)(1.04015,1.19773)(1.06172,1.19496)(1.08329,1.19113)(1.10486,1.18627)(1.12644,1.18040)(1.14801,1.17354)(1.16958,1.16574)(1.19116,1.15702)(1.21273,1.14742)(1.23430,1.13697)(1.25587,1.12571)(1.27745,1.11368)(1.29902,1.10091)(1.32059,1.08745)(1.34217,1.07332)(1.36374,1.05858)(1.38531,1.04327)(1.40688,1.02742)(1.42846,1.01107)(1.45003,0.99427)(1.47160,0.97706)(1.49318,0.95947)(1.51475,0.94156)(1.53632,0.92335)(1.55789,0.90489)(1.57947,0.88622)(1.60104,0.86737)(1.62261,0.84838)(1.64419,0.82929)(1.66576,0.81014)(1.68733,0.79096)(1.70890,0.77178)(1.73048,0.75264)(1.75205,0.73356)(1.77362,0.71459)(1.79520,0.69574)(1.81677,0.67705)(1.83834,0.65855)(1.85991,0.64025)(1.88149,0.62218)(1.90306,0.60437)(1.92463,0.58684)(1.94621,0.56961)(1.96778,0.55269)(1.98935,0.53611)(2.01092,0.51988)(2.03250,0.50402)(2.05407,0.48853)(2.07564,0.47344)(2.09722,0.45875)(2.11879,0.44448)(2.14036,0.43063)(2.16193,0.41720)(2.18351,0.40421)(2.20508,0.39167)(2.22665,0.37956)(2.24823,0.36791)(2.26980,0.35670)(2.29137,0.34594)(2.31294,0.33563)(2.33452,0.32577)(2.35609,0.31635)(2.37766,0.30738)(2.39924,0.29884)(2.42081,0.29073)(2.44238,0.28305)(2.46395,0.27580)(2.48553,0.26895)(2.50710,0.26251)(2.52867,0.25647)(2.55025,0.25081)(2.57182,0.24553)(2.59339,0.24062)(2.61496,0.23607)(2.63654,0.23186)(2.65811,0.22799)(2.67968,0.22444)(2.70126,0.22119)(2.72283,0.21825)(2.74440,0.21558)(2.76597,0.21319)(2.78755,0.21105)(2.80912,0.20916)(2.83069,0.20749)(2.85227,0.20604)(2.87384,0.20479)(2.89541,0.20373)(2.91698,0.20283)(2.93856,0.20209)(2.96013,0.20149)(2.98170,0.20102)(3.00328,0.20066)(3.02485,0.20040)(3.04642,0.20022)(3.06799,0.20010)(3.08957,0.20004)(3.11114,0.20001)(3.13271,0.20000)(3.15429,0.20000)(3.17586,0.20001)(3.19743,0.20004)(3.21901,0.20012)(3.24058,0.20024)(3.26215,0.20044)(3.28372,0.20072)(3.30530,0.20110)(3.32687,0.20159)(3.34844,0.20221)(3.37002,0.20298)(3.39159,0.20390)(3.41316,0.20500)(3.43473,0.20628)(3.45631,0.20777)(3.47788,0.20948)(3.49945,0.21141)(3.52103,0.21359)(3.54260,0.21603)(3.56417,0.21875)(3.58574,0.22174)(3.60732,0.22504)(3.62889,0.22865)(3.65046,0.23258)(3.67204,0.23685)(3.69361,0.24147)(3.71518,0.24644)(3.73675,0.25178)(3.75833,0.25751)(3.77990,0.26362)(3.80147,0.27013)(3.82305,0.27705)(3.84462,0.28438)(3.86619,0.29213)(3.88776,0.30032)(3.90934,0.30893)(3.93091,0.31798)(3.95248,0.32748)(3.97406,0.33742)(3.99563,0.34781)(4.01720,0.35865)(4.03877,0.36994)(4.06035,0.38167)(4.08192,0.39385)(4.10349,0.40648)(4.12507,0.41954)(4.14664,0.43304)(4.16821,0.44697)(4.18978,0.46132)(4.21136,0.47608)(4.23293,0.49124)(4.25450,0.50679)(4.27608,0.52272)(4.29765,0.53902)(4.31922,0.55566)(4.34079,0.57263)(4.36237,0.58992)(4.38394,0.60750)(4.40551,0.62536)(4.42709,0.64347)(4.44866,0.66180)(4.47023,0.68034)(4.49180,0.69907)(4.51338,0.71794)(4.53495,0.73693)(4.55652,0.75602)(4.57810,0.77517)(4.59967,0.79435)(4.62124,0.81353)(4.64281,0.83267)(4.66439,0.85175)(4.68596,0.87071)(4.70753,0.88953)(4.72911,0.90817)(4.75068,0.92659)(4.77225,0.94475)(4.79382,0.96261)(4.81540,0.98013)(4.83697,0.99727)(4.85854,1.01399)(4.88012,1.03026)(4.90169,1.04602)(4.92326,1.06123)(4.94483,1.07587)(4.96641,1.08988)(4.98798,1.10322)(5.00955,1.11586)(5.03113,1.12776)(5.05270,1.13888)(5.07427,1.14918)(5.09584,1.15863)(5.11742,1.16719)(5.13899,1.17482)(5.16056,1.18151)(5.18214,1.18720)(5.20371,1.19189)(5.22528,1.19553)(5.24685,1.19811)(5.26843,1.19960)(5.29000,1.19999)
+      };
+      \addlegendentry{Wahre Induktivität};
+      
+      
+      \draw [dashed] (axis cs:0,0.2) -- (axis cs:6.2,0.2);
+      \draw [dashed] (axis cs:0,1.2) -- (axis cs:6.2,1.2);
+      \draw [dashed] (axis cs:3.142,0) -- (axis cs:3.142,1.4);
+            
+    \end{axis}
+  \end{tikzpicture}
+\end{center}
+
+  $$p_\delta(t) = \frac{1}{2} \cdot \frac{dL}{d\gamma_r}(\gamma_r) \cdot \omega_r \cdot i^2(t)$$
+  $$m_M(t) = \frac{p_\delta}{\omega_r}(t) = \frac{1}{2} \cdot \frac{dL}{d\gamma_R}(\gamma_r) \cdot i^2(t)$$
+  $$M_L (f_s, \omega_1) = M_M - J_g \alpha_0 f_s^2 + J_g \omega_1 f_s$$
+  
+
+\section{Vergleich der Maschinen}
+\begin{tabular}{|c|c|c|c|c|}
+ \hline
+ %& GSM & RSM & SYM & ASM \\
+ & GSM & RSM & SYM & ASM \\ \hline
+ Komplexität des Aufbaus & \clCell{Red}{4} & \clCell{Blue}{2} & \clCell{Orange}{3} & \clCell{Green}{1} \\ \hline
+ Kosten & \clCell{Red}{4} & \clCell{Orange}{3} & \clCell{Blue}{2} & \clCell{Green}{1} \\ \hline
+ Wirkungsgrad & \clCell{Red}{4} & \clCell{Blue}{2} & \clCell{Green}{1} & \clCell{Orange}{3} \\ \hline
+ Anpassungsfähigkeit & \clCell{Green}{1} & \clCell{Blue}{2} & \clCell{Orange}{3} & \clCell{Red}{4} \\ \hline 
+\end{tabular}
+
+\subsection{Anlaufstrom}
+\begin{itemize}
+  \item \textbf{GSM}: Begrenzung durch Vorwiederstand: $I_a = \frac{U}{R_a}$
+  \item \textbf{RSM}: Begrenzung durch Speisung
+  \item \textbf{SYM}: $I_a = K \cdot I_n, \quad 0.5 \leq K \leq 30$
+  \item \textbf{ASM}: $I_a = K \cdot I_n, \quad 0.5 \leq K \leq 30$
+\end{itemize}
+
+\subsection{Anlaufmoment}
+\begin{itemize}
+  \item \textbf{GSM}: $M \sim I$, Begrenzt durch $R_a$, $I_{max}$
+  \item \textbf{RSM}: $M \sim U$
+  \item \textbf{SYM}: $\fmm M \sim \left( \frac{U}{f} \right)^2$, Begrenzt durch $X_\sigma$
+  \item \textbf{ASM}: $\fmm M \sim \left( \frac{U}{f} \right)^2$, Begrenzt durch $X_\sigma$
+\end{itemize}
+
+\subsection{Drehzahlregelung}
+\begin{itemize}
+  \item \textbf{GSM}: Über Spannung und Erregerstrom
+  \item \textbf{RSM}: Über die Frequenz der digitalen Logik
+  \item \textbf{SYM}: Über die Poolparzahl und die Frequenz
+  \item \textbf{ASM}: Über die Poolparzahl und die Frequenz
+\end{itemize}
+
+\subsection{Anwendungsbereiche}
+\begin{itemize}
+  \item \textbf{GSM}: Regelbare Antriebe mit grossem Stellbereich und guter Dynamik
+  \item \textbf{RSM}: Verstellantriebe kleiner Leistung ohne Regelung
+  \item \textbf{SYM}: Antriebe mit konstanter Drehzahl und gutem Leistungsfaktor
+  \item \textbf{ASM}: Einfache Antriebe und regelbare Antriebe mit beschränkter Dynamik
+\end{itemize}
+
+\end{twocolumn}
+
+\end{document}

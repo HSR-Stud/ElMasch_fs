@@ -50,7 +50,7 @@ werden: $\vec{a}$: Daumen, $\vec{b}$: Zeigefinger, $\vec{a} \times \vec{b}:$ Mit
     \cdef{$l, r$} & \cdef{Länge / Radius einer Spule} \\
     \cdef{$W_m [J]$} & \cdef{Magnetische Energie}
   \end{tabular} &
-  \begin{tabular}{l}
+  \begin{tabular}{l} 
     $\mu = \mu_0 \cdot \mu_r \quad \mu_0 = 4 \pi \cdot 10^{-7}$ \\
     $\fmm \vec{F}_m = \frac{\mu}{2\pi} \cdot \frac{I i}{r}\cdot \vec{r}_0 = \mu \cdot i \cdot \vec{l}_0 \times \vec{H}$ \\
     $\fmm \vec{H} = \frac{I}{2\pi} \cdot \frac{\vec{L}_0 \times \vec{r}_0}{r}$ \\
@@ -61,7 +61,7 @@ werden: $\vec{a}$: Daumen, $\vec{b}$: Zeigefinger, $\vec{a} \times \vec{b}:$ Mit
     $\fmm V_m = \int_A^B \vec{H} \cdot \vec{dl}$ \\
     $\fmm R_m = \frac{V_m}{\Phi} = \frac{l}{\mu \cdot A} \text{(wenn Homogen)}$ \\
     $\fmm H = \frac{N \cdot I}{l}, \quad  \text{wenn } l \gg r$ \\
-    $\fmm W_m = \frac{1}{2} \cdot H \cdot B \cdot V$
+    $\fmm W_m = \frac{1}{2} \iiint_V B \cdot H \cdot dV =  \frac{1}{2} \cdot H \cdot B \cdot V$
   \end{tabular}
 \end{tabular}
 
@@ -222,7 +222,7 @@ werden: $\vec{a}$: Daumen, $\vec{b}$: Zeigefinger, $\vec{a} \times \vec{b}:$ Mit
     $E = \omega \cdot \Psi \qquad \Psi = L_e \cdot I_e$ \\
     $P_{el} = \underbrace{ R_e \cdot I_e^2 }_{\text{Erregerverluste}} + \underbrace{R_a \cdot I_a^2}_{\text{Ankerverluste}} + \omega \cdot \Psi \cdot I_a$ \\
     $P_{mech} = \omega \cdot M, \qquad M = \Psi \cdot I_a$ \\
-    $\fmm M = \frac{U_a \cdot \Psi - \omega \cdot \Psi^2}{R_a}$
+    $\fmm M = \frac{U_a \cdot \Psi - \omega \cdot \Psi^2}{R_a} \qquad I_a = \frac{U_a-\omega \Psi}{R_a}$ \\
   \end{tabular}
 \end{tabular}
  
@@ -438,12 +438,12 @@ $$n=0 \Rightarrow M_A = \frac{L_e \cdot U^2}{(R_a + R_e)^2} \qquad n_b = \frac{R
     \cdef{$X_d$: Synchronreaktanz} \\
     \cdef{$X_{\sigma 1}$: Streureaktanz} \\
     \cdef{$X_{h}$: Hauptreaktanz} \\
-    $X_d = X_{\sigma 1} + X_h$ \\
     \cdef{$U_p$: Polradspannung} \\
     \cdef{$U_1$: Netzspannung}
   \end{tabular}
 
 \end{tabular}
+
 
 Die Polradspannung $U_p$ ist eine fiktive Hilfsgrösse. In der Ankerwicklung (Erreger) wird ein
 Gleichstrom $I_e$ angelegt, welcher das Feld erzeugt. Im Leerlauf der Maschine entspricht 
@@ -452,6 +452,7 @@ $$\cn{U_p} = \cn{U_p}(\cn{I_e}) \quad \cn{U_p} = j X_h \cdot \cn{I'_e}, \quad \t
 
 So entsteht die Grundgleichung einer Synchronmaschine:
 
+$$\cn{U_1} = \cn{U_d} + \cn{U_p} \qquad \cn{U_d} = j X_d \cdot \cn{I_1} \qquad X_d = X_{\sigma 1} + X_h = \frac{U_1}{\sqrt{3} \cdot I_k}$$
 $$\cn{U_1} = \cn{U_d} + \cn{U_p} = jX_d \cdot \cn{I_1} + \cn{U_p}(I_e)$$
 
 \begin{tabular}{ll}
@@ -459,7 +460,7 @@ $$\cn{U_1} = \cn{U_d} + \cn{U_p} = jX_d \cdot \cn{I_1} + \cn{U_p}(I_e)$$
     \begin{tikzpicture}
       \begin{axis} [
         width=0.4\columnwidth,
-        height=0.4\columnwidth,
+        height=0.35\columnwidth,
         title={Leerlauf-Kennlinie},
         axis lines=middle, 
         xlabel={$I_e$},
@@ -491,7 +492,7 @@ $$\cn{U_1} = \cn{U_d} + \cn{U_p} = jX_d \cdot \cn{I_1} + \cn{U_p}(I_e)$$
     \begin{tikzpicture}
       \begin{axis} [
         width=0.4\columnwidth,
-        height=0.4\columnwidth,
+        height=0.35\columnwidth,
         title={Kurzschluss-Kennlinie},
         axis lines=middle, 
         xlabel={$I_e$},
@@ -611,6 +612,8 @@ wird.
 \end{tabular}
 
 \subsection{Leistung}
+Der Faktor $3$ kommt nur dazu, wenn die Leistung von allen 3 Strängen gefragt ist. (Leistung ist nicht abhängig von Stern- oder Dreieckschaltung.)
+$$P = 3 \cdot U_1 \cdot I_1 \cdot \cos{\varphi}$$
 $$P(\delta) = 3 \cdot \frac{U_p U_1}{X_d} \cdot \sin{\delta} = \left\{ \begin{array}{ll}
 P_{mech} - P_V = \omega \cdot M - P_V & \text{wenn Generator} \\
 P_{mech} + P_V = \omega \cdot M + P_V & \text{wenn Motor} \\
@@ -647,7 +650,7 @@ P_{mech} + P_V = \omega \cdot M + P_V & \text{wenn Motor} \\
   \end{tikzpicture}
 \end{center}
 
-\section{Synchronmaschine}
+\section{Asynchronmaschine}
 \begin{tabular}{ll}
 
   \begin{tabular}{l}

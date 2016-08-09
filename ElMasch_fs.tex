@@ -22,7 +22,9 @@ sein.
     \cdef{$\vec{E} \cunit{V}{m}$} & \cdef{Elektrisches Feld} \\
   \end{tabular} &
   \begin{tabular}{l}
-    $\varepsilon = \varepsilon_0 \cdot \varepsilon_r, \quad \varepsilon_0 = 8.8542 $ \\
+    $\varepsilon = \varepsilon_0 \cdot \varepsilon_r, \quad \varepsilon_0 = 8.8542 \cdot
+    10^{-12} $
+    \\
     $\fmm \vec{F}_e = \frac{Q \cdot q}{2 \pi \varepsilon r} \cdot \vec{r}_0$ \\
     $\fmm \vec{E} = \frac{\vec{F}_e}{q} = \frac{Q}{2 \pi \varepsilon r} \cdot \vec{r}_0$ \\
     $\fmm U_{AB} = \int_A^B \vec{E} \cdot \vec{dl} = \varphi_A - \varphi_B$
@@ -569,7 +571,7 @@ wird.
   \end{tabular}
 \end{tabular}
 
-\subsubsection{Zeigerdiagramm im Generatorbetrieb: $\delta > 0$}
+\subsubsection{Zeigerdiagramm im Generatorbetrieb: $\delta < 0$}
 
 \begin{tabular}{c|c}
   Übererregt: $U_p > U_1$ (kapatiziv: $\varphi < 0$) &
@@ -613,7 +615,7 @@ wird.
 
 \subsection{Leistung}
 Der Faktor $3$ kommt nur dazu, wenn die Leistung von allen 3 Strängen gefragt ist. (Leistung ist nicht abhängig von Stern- oder Dreieckschaltung.)
-$$P = 3 \cdot U_1 \cdot I_1 \cdot \cos{\varphi}$$
+$$P = 3 \cdot U_1 \cdot I_1 \cdot \cos{\varphi} = 3 \cdot \frac{U_p \cdot U_1}{\omega L_d} \cdot \sin{\delta}$$
 $$P(\delta) = 3 \cdot \frac{U_p U_1}{X_d} \cdot \sin{\delta} = \left\{ \begin{array}{ll}
 P_{mech} - P_V = \omega \cdot M - P_V & \text{wenn Generator} \\
 P_{mech} + P_V = \omega \cdot M + P_V & \text{wenn Motor} \\
@@ -709,31 +711,38 @@ P_{mech} + P_V = \omega \cdot M + P_V & \text{wenn Motor} \\
     \cdef{$n_2$}  & \cdef{Relative Drehzanl}\\
     \cdef{$s$}    & \cdef{Schlupf} \\
     \cdef{$I_2$}  & \cdef{Induzierter Strom} \\
+    \cdef{$q_1$}  & \cdef{Anz. Phasen} \\
     \multicolumn{2}{l}{$n_2 = n_1 - n$} \\
     \multicolumn{2}{l}{$\fmm s = \frac{n_2}{n_1} = \frac{n_1 - n}{n_1} = \frac{f_2}{f_1}$} \\
-    \multicolumn{2}{l}{$\fmm I_2 = \frac{U_{i20}}{\sqrt{ \left( \frac{R_2}{s} \right)^2 + X_{2\sigma}^2 }}$}
+    \multicolumn{2}{l}{$\fmm I_2 = \frac{U_{i20}}{\sqrt{ \left( \frac{R'_2}{s} \right)^2 +
+    X_{2\sigma}'^2 }}$}
   \end{tabular}
 \end{tabular}
 
 \begin{center}
   \begin{tabular}{ll}
-    \textbf{Stillstand} & \textbf{Synchroner Lauf} \\
+    \textbf{Stillstand} (Anlauf) & \textbf{Synchroner Lauf} \\
     \midrule
     $s = 1 \quad f_2 = f_1$ & $s = 0 \quad f_2 = 0$ \\
-    $\fmm I_2 = I_{2_{max}} = \frac{U_{i20}}{\sqrt{ R_2^2 + X_{2\sigma}^2 }}$ &
+    $\fmm I_2 = I_{2_{max}} = \frac{U_{i20}}{\sqrt{ R_2'^2 + X_{2\sigma}'^2 }}$ &
     $I_2 = I_{2_{min}} = 0$
   \end{tabular}
 \end{center}
 
+\cdef{$r$: Radius des Rotors}, \cdef{$B$: Flussdichte des Drehfeldes}, \cdef{$l_2$: Länge des Rotors}
+$$M = r \cdot F_1 = R \cdot I_2 B l_2 = \frac{60}{2\pi n_1} \cdot \frac{P_{Cu2}}{s} \qquad \frac{M}{M_K} = \frac{2}{\frac{s}{s_k} + \frac{s_k}{s}}$$
+$$M = \frac{60}{2 \pi \cdot n_1} \frac{P_{Cu2}}{s} = 
+\frac{60 \cdot q_2 \cdot U_{i20}^2 \cdot R'_2}{2 \pi n_1 s \cdot \left(\left(\frac{R'_2}{s}\right)^2 + X_{2\sigma}'^2\right)} \qquad 
+M_K = \frac{60 \cdot q_1}{4 \pi n_1} \cdot \frac{U_1^2}{X'_{2\sigma}}$$
+
+
 \subsection{Leistung}
-\cdef{$P_1$: primäre Netzleistung, $P_{Cu}$: Ohmsche Verluste, $P_{Fe}$: Blechkernverluste, 
+\cdef{$P_1$: primäre Netzleistung,  
 $P_{D1}$: Drehfeldleistung, $P_m$: mechanische Leistung, $P_R$: Reibungsverluste und Lüftung,
 $P_{m}'$: mechanische Nutzleistung}
 
 $$P_m' = P_m - P_R = P_{D1} - P_{Cu2} - P_R = P_1 - P_{Cu1} - P_{Fe} - P_{Cu2} - P_R $$
 $$P_{D1} = 2 \pi \cdot n_1 \cdot M \qquad P_{m} = 2 \pi \cdot n \cdot M$$
-$$M = \frac{1}{2 \pi \cdot n_1} \frac{P_{Cu2}}{s} = 
-\frac{q_2 \cdot U_{i20}^2 \cdot R_2}{2 \pi n_1 s \cdot \left(\left(\frac{R_2}{s}\right)^2 + X_{2\sigma}^2\right)}$$
 
 \begin{center}
   \begin{tikzpicture}
@@ -817,11 +826,13 @@ $$M = \frac{1}{2 \pi \cdot n_1} \frac{P_{Cu2}}{s} =
     $I_0$ & Leerlaufstrom \\
   \end{dtabular} &
   \begin{mtabular}{l}
-    $\fmm \cn{I_1} = \cn{I_{Fe}} + \cn{I_\mu} + \cn{I_{2}'}$ \\
+    $\fmm \cn{I_1} = \cn{I_{Fe}} + \cn{I_\mu} + \cn{I_{2}'} \approx \cn{I_{2}'}$ \\
     $\fmm \cn{U_1} = R_1 \cdot \cn{I_1} + j X_{\sigma 1} \cn{I_1} + \cn{U_h}$ \\
     $\fmm u = \frac{N_1 \cdot k_{w1}}{N_2 \cdot k_{w2}}, \quad \cn{I_2'} = \cn{I_2} \cdot u, 
       \quad  R_{2}' = R_2 \cdot u^2$ \\
     $\fmm \cn{I_0} = \cn{I_{Fe}} + \cn{I_\mu}$ \\
+    $\fmm s_k = \frac{R'_2 }{X'_{2\sigma}} \qquad M_K = \frac{60 \cdot q_1}{4\pi n_1} \cdot \frac{U_1^2}{X'_{2\sigma}}$ \\
+    $\fmm U_{Y} = \frac{U_{\Delta}}{\sqrt{3}} \quad I_{Y} = \frac{I_{\Delta}}{\sqrt{3}} \quad M_{Y} = \frac{M_{\Delta}}{3}$    
   \end{mtabular}
 \end{tabular}
 
@@ -978,6 +989,10 @@ werden.
   \end{mtabular}
 \end{tabular}
 
+\cdef{$\omega_1$} ist die Geometrische Kreisfrequenz des Rotors zu dem Zeitpunkt des
+Impulseinschaltens ($\omega_1 = 0$ bedeutet der Rotor ist im Stillstand, ist $\omega_1 =
+\omega_{BP)$, dann ist man am Betriebspunkt).
+
 \subsection{Drehmoment und Leistung}
 
 \begin{tabular}{ll}
@@ -987,14 +1002,14 @@ werden.
     $L_q$ & Induktivität in q-Achse \\
     $\delta_d$ & Kleinster Luftspalt \\
     $\delta_q$ & grösster Luftspalt \\
-    $m_M$ & Motormoment \\
-    $J_g$ & gesamtes Trägheitsmoment \\
-    $M_M$ & Drehmoment des Motors
+    $M_M$ & Motormoment \\
+    $J_g$ & gesamtes Trägheitsmoment
   \end{dtabular} &
   \begin{mtabular}{l}
-    $\fmm M = \frac{dW_m}{d\varphi} = \frac{1}{2}I^2 \cdot \frac{dL(\varphi)}{d\varphi}$ \\
-    $\fmm L_d = 2 \cdot N^2 \cdot \mu_0 \cdot \frac{A_z}{\delta_d}$ \\
-    $\fmm L_q = 2 \cdot N^2 \cdot \mu_0 \cdot \frac{A_z}{\delta_q}$ \\
+    $\fmm M = \frac{dW_m}{d\varphi} = \frac{1}{2}\cdot I^2 \cdot \frac{dL(\varphi)}{d\varphi}$ \\
+    $\fmm \Rightarrow M_M = \frac{1}{2}\cdot I^2 \cdot \frac{L_d - L_q}{\alpha_0}$ \\
+    $\fmm L_d = N^2 \cdot \mu_0 \cdot \frac{A_z}{2\delta_d}$ \\
+    $\fmm L_q = N^2 \cdot \mu_0 \cdot \frac{A_z}{2\delta_q}$ \\
   \end{mtabular}
 \end{tabular}
 
@@ -1066,8 +1081,8 @@ werden.
 \end{center}
 
   $$p_\delta(t) = \frac{1}{2} \cdot \frac{dL}{d\gamma_r}(\gamma_r) \cdot \omega_r \cdot i^2(t)$$
-  $$m_M(t) = \frac{p_\delta}{\omega_r}(t) = \frac{1}{2} \cdot \frac{dL}{d\gamma_R}(\gamma_r) \cdot i^2(t)$$
-  $$M_L (f_s, \omega_1) = M_M - J_g \alpha_0 f_s^2 + J_g \omega_1 f_s$$
+  $$M_M(t) = \frac{p_\delta}{\omega_r}(t) = \frac{1}{2} \cdot \frac{dL}{d\gamma_r}(\gamma_r)
+  \cdot i^2(t)$$ $$M_L (f_s, \omega_1) = M_M - J_g \alpha_0 f_s^2 + J_g \omega_1 f_s$$
   
 
 \section{Vergleich der Maschinen}

@@ -737,8 +737,8 @@ P_{mech} + P_V = \omega \cdot M + P_V & \text{wenn Motor} \\
 $$M = r \cdot F_1 = R \cdot I_2 B l_2 = \frac{60}{2\pi n_1} \cdot \frac{P_{Cu2}}{s} \qquad \frac{M}{M_K} =
 \frac{2}{\frac{s}{s_k} + \frac{s_k}{s}} \qquad s_k = \frac{R'_2}{X'_{2\sigma}}$$ 
 $$M = \frac{60}{2 \pi \cdot n_1} \frac{P_{Cu2}}{s} = 
-\frac{60 \cdot q_2 \cdot U_{i20}^2 \cdot R'_2}{2 \pi n_1 s \cdot \left(\left(\frac{R'_2}{s}\right)^2 + X_{2\sigma}'^2\right)} \qquad 
-M_K = \frac{60 \cdot q_1}{4 \pi n_1} \cdot \frac{U_1^2}{X'_{2\sigma}}$$
+\frac{60 \cdot q_1 \cdot U_{i20}^2 \cdot R'_2}{2 \pi n_1 s \cdot \left(\left(\frac{R'_2}{s}\right)^2 +
+X_{2\sigma}'^2\right)} \qquad M_K = \frac{60 \cdot q_1}{4 \pi n_1} \cdot \frac{U_1^2}{X'_{2\sigma}}$$
 
 
 \subsection{Leistung}
@@ -815,6 +815,9 @@ $$P_{D1} = \frac{2\pi}{60} \cdot n_1 \cdot M \qquad P_{m} = \frac{2\pi}{60} \cdo
     \draw (5.5,0) to [R, l^={\large $R_{Fe}$}, i<^={\large $\cn{I_{Fe}}$}, *-*] (5.5,3);
     \draw (6.5,0) to [L, l_={\large $X_{h}$}, i<_={\large $\cn{I_{\mu}}$}, *-*] (6.5,3);
     \draw [>=latex, ->, bend left=20, shorten >=2mm, shorten <=2mm](7.5,3) to node[right] {\large $\cn{U_h}$} (7.5,0); 
+    \draw [>=latex, ->, bend right=20, shorten >=2mm, shorten <=2mm](10.5,3) to node[left] {\large
+    $\cn{U_{i20}}$} (10.5,0);
+    
     \draw [>=latex, ->, bend right=20, shorten >=2mm, shorten <=2mm](0,3) to node[left] {\large $\cn{U_1}$} (0,0); 
   \end{circuitikz}
 \end{center}
@@ -831,13 +834,14 @@ $$P_{D1} = \frac{2\pi}{60} \cdot n_1 \cdot M \qquad P_{m} = \frac{2\pi}{60} \cdo
     $I_0$ & Leerlaufstrom \\
   \end{dtabular} &
   \begin{mtabular}{l}
-    $\fmm \cn{I_1} = \cn{I_{Fe}} + \cn{I_\mu} + \cn{I_{2}'} \approx \cn{I_{2}'}$ \\
+    $\fmm \cn{I_1} = \cn{I_{Fe}} + \cn{I_\mu} + \cn{I_{2}'} \approx \cn{I_{2}'} \quad \cn{U_{i20}} \approx
+    \cn{U_1}$ \\
     $\fmm \cn{U_1} = R_1 \cdot \cn{I_1} + j X_{\sigma 1} \cn{I_1} + \cn{U_h}$ \\
     $\fmm u = \frac{N_1 \cdot k_{w1}}{N_2 \cdot k_{w2}}, \quad \cn{I_2'} = \cn{I_2} \cdot u, 
       \quad  R_{2}' = R_2 \cdot u^2$ \\
     $\fmm \cn{I_0} = \cn{I_{Fe}} + \cn{I_\mu} \qquad \cos{\varphi} = \frac{P}{U \cdot I}$ \\
     $\fmm s_k = \frac{R'_2 }{X'_{2\sigma}} \qquad M_K = \frac{60 \cdot q_1}{4\pi n_1} \cdot \frac{U_1^2}{X'_{2\sigma}}$ \\
-    $\fmm U_{Y} = \frac{U_{\Delta}}{\sqrt{3}} \quad I_{Y} = \frac{I_{\Delta}}{\sqrt{3}} \quad M_{Y} = \frac{M_{\Delta}}{3}$    
+    $\fmm U_{Y} = \frac{U_{\Delta}}{\sqrt{3}} \qquad M_{Str} = \frac{M_{tot}}{3}$    
   \end{mtabular}
 \end{tabular}
 

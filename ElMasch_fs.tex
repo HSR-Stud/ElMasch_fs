@@ -92,7 +92,7 @@ werden: $\vec{a}$: Daumen, $\vec{b}$: Zeigefinger, $\vec{a} \times \vec{b}:$ Mit
     $\fmm \oint_{\gamma} \vec{H} \vec{dl} = H_{Fe} \cdot l_{Fe} + 2 \delta H_\delta = N I$ \\
     \cdef{Länge aller Luftspalte $\delta$} \\
     $\fmm H_\delta = \frac{N \cdot I}{\delta}, \textrm{ wenn } H_\delta \gg H_{Fe}$ \\
-    $\fmm F_R = \mu_0 \cdot \frac{N^2 I^2 A_{Fe}}{4\delta^2}$ \\
+    $\fmm F_R = \frac{\partial W_m}{\partial \delta} = \mu_0 \cdot \frac{N^2 I^2 A_{Fe}}{4\delta^2}$ \\
     $\fmm W_m = \frac{1}{2} H_\delta B_\delta \cdot 2 A_{Fe} \delta = \frac{\mu_0 A_{Fe} I^2 N^2}{4 \delta}$ \\
     \textbf{in der Sättigung:} \\
     $\fmm H_\delta = \frac{N \cdot I}{\frac{\mu_0}{\mu_{Fe}} l_{Fe} + 2 \delta}$
@@ -221,7 +221,8 @@ werden: $\vec{a}$: Daumen, $\vec{b}$: Zeigefinger, $\vec{a} \times \vec{b}:$ Mit
   \begin{tabular}{l}
     $U_e = R_e \cdot I_e + L_e \cdot \frac{dI_e}{dt}$ \\
     $U_a = R_a \cdot I_a + L_a \cdot \frac{dI_a}{dt} + E$ \\
-    $E = \omega \cdot \Psi \qquad \Psi = L_e \cdot I_e$ \\
+    $E = \omega \cdot \Psi \qquad \omega = \frac{2\pi}{60} \cdot n \qquad \Psi = L_e \cdot I_e$
+    \\
     $P_{el} = \underbrace{ R_e \cdot I_e^2 }_{\text{Erregerverluste}} + \underbrace{R_a \cdot I_a^2}_{\text{Ankerverluste}} + \omega \cdot \Psi \cdot I_a$ \\
     $P_{mech} = \omega \cdot M, \qquad M = \Psi \cdot I_a$ \\
     $\fmm M = \frac{U_a \cdot \Psi - \omega \cdot \Psi^2}{R_a} \qquad I_a = \frac{U_a-\omega \Psi}{R_a}$ \\
@@ -446,9 +447,8 @@ $$n=0 \Rightarrow M_A = \frac{L_e \cdot U^2}{(R_a + R_e)^2} \qquad n_b = \frac{R
 
 \end{tabular}
 
-
-Die Polradspannung $U_p$ ist eine fiktive Hilfsgrösse. In der Ankerwicklung (Erreger) wird ein
-Gleichstrom $I_e$ angelegt, welcher das Feld erzeugt. Im Leerlauf der Maschine entspricht 
+\textbf{Meist in Stern-Schaltung!} Die Polradspannung $U_p$ ist eine fiktive Hilfsgrösse. In der
+Ankerwicklung (Erreger) wird ein Gleichstrom $I_e$ angelegt, welcher das Feld erzeugt. Im Leerlauf der Maschine entspricht 
 $U_p$ der von dem Erregerstrom induzierten Spannung der Statorwicklung. 
 $$\cn{U_p} = \cn{U_p}(\cn{I_e}) \quad \cn{U_p} = j X_h \cdot \cn{I'_e}, \quad \text{wobei } \cn{I'_e} \text{: Erregerstrom auf Statorseite}$$
 
@@ -613,6 +613,9 @@ wird.
   \end{tabular}
 \end{tabular}
 
+$$(X_d \cdot I_1)^2 = \left(\frac{U_1}{\sqrt{3}}\right)^2 + \left(\frac{U_p}{\sqrt{3}}\right)^2 - 2 \cdot
+\frac{U_1}{\sqrt{3}} \cdot \frac{U_p}{\sqrt{3}} \cdot \cos{\delta} $$
+
 \subsection{Leistung}
 Der Faktor $3$ kommt nur dazu, wenn die Leistung von allen 3 Strängen gefragt ist. (Leistung ist nicht abhängig von Stern- oder Dreieckschaltung.)
 $$P = 3 \cdot U_1 \cdot I_1 \cdot \cos{\varphi} = 3 \cdot \frac{U_p \cdot U_1}{\omega L_d} \cdot \sin{\delta}$$
@@ -714,7 +717,7 @@ P_{mech} + P_V = \omega \cdot M + P_V & \text{wenn Motor} \\
     \cdef{$q_1$}  & \cdef{Anz. Phasen} \\
     \multicolumn{2}{l}{$n_2 = n_1 - n$} \\
     \multicolumn{2}{l}{$\fmm s = \frac{n_2}{n_1} = \frac{n_1 - n}{n_1} = \frac{f_2}{f_1}$} \\
-    \multicolumn{2}{l}{$\fmm I_2 = \frac{U_{i20}}{\sqrt{ \left( \frac{R'_2}{s} \right)^2 +
+    \multicolumn{2}{l}{$\fmm I'_2 = \frac{U_{1}}{\sqrt{ \left( \frac{R'_2}{s} \right)^2 +
     X_{2\sigma}'^2 }}$}
   \end{tabular}
 \end{tabular}
@@ -730,19 +733,20 @@ P_{mech} + P_V = \omega \cdot M + P_V & \text{wenn Motor} \\
 \end{center}
 
 \cdef{$r$: Radius des Rotors}, \cdef{$B$: Flussdichte des Drehfeldes}, \cdef{$l_2$: Länge des Rotors}
-$$M = r \cdot F_1 = R \cdot I_2 B l_2 = \frac{60}{2\pi n_1} \cdot \frac{P_{Cu2}}{s} \qquad \frac{M}{M_K} = \frac{2}{\frac{s}{s_k} + \frac{s_k}{s}}$$
+$$M = r \cdot F_1 = R \cdot I_2 B l_2 = \frac{60}{2\pi n_1} \cdot \frac{P_{Cu2}}{s} \qquad \frac{M}{M_K} =
+\frac{2}{\frac{s}{s_k} + \frac{s_k}{s}} \qquad s_k = \frac{R'_2}{X'_{2\sigma}}$$ 
 $$M = \frac{60}{2 \pi \cdot n_1} \frac{P_{Cu2}}{s} = 
 \frac{60 \cdot q_2 \cdot U_{i20}^2 \cdot R'_2}{2 \pi n_1 s \cdot \left(\left(\frac{R'_2}{s}\right)^2 + X_{2\sigma}'^2\right)} \qquad 
 M_K = \frac{60 \cdot q_1}{4 \pi n_1} \cdot \frac{U_1^2}{X'_{2\sigma}}$$
 
 
 \subsection{Leistung}
-\cdef{$P_1$: primäre Netzleistung,  
-$P_{D1}$: Drehfeldleistung, $P_m$: mechanische Leistung, $P_R$: Reibungsverluste und Lüftung,
-$P_{m}'$: mechanische Nutzleistung}
+%\cdef{$P_1$: primäre Netzleistung,  
+%$P_{D1}$: Drehfeldleistung, $P_m$: mechanische Leistung, $P_R$: Reibungsverluste und Lüftung,
+%$P_{m}'$: mechanische Nutzleistung}
 
 $$P_m' = P_m - P_R = P_{D1} - P_{Cu2} - P_R = P_1 - P_{Cu1} - P_{Fe} - P_{Cu2} - P_R $$
-$$P_{D1} = 2 \pi \cdot n_1 \cdot M \qquad P_{m} = 2 \pi \cdot n \cdot M$$
+$$P_{D1} = \frac{2\pi}{60} \cdot n_1 \cdot M \qquad P_{m} = \frac{2\pi}{60} \cdot n \cdot M$$
 
 \begin{center}
   \begin{tikzpicture}
@@ -830,7 +834,7 @@ $$P_{D1} = 2 \pi \cdot n_1 \cdot M \qquad P_{m} = 2 \pi \cdot n \cdot M$$
     $\fmm \cn{U_1} = R_1 \cdot \cn{I_1} + j X_{\sigma 1} \cn{I_1} + \cn{U_h}$ \\
     $\fmm u = \frac{N_1 \cdot k_{w1}}{N_2 \cdot k_{w2}}, \quad \cn{I_2'} = \cn{I_2} \cdot u, 
       \quad  R_{2}' = R_2 \cdot u^2$ \\
-    $\fmm \cn{I_0} = \cn{I_{Fe}} + \cn{I_\mu}$ \\
+    $\fmm \cn{I_0} = \cn{I_{Fe}} + \cn{I_\mu} \qquad \cos{\varphi} = \frac{P}{U \cdot I}$ \\
     $\fmm s_k = \frac{R'_2 }{X'_{2\sigma}} \qquad M_K = \frac{60 \cdot q_1}{4\pi n_1} \cdot \frac{U_1^2}{X'_{2\sigma}}$ \\
     $\fmm U_{Y} = \frac{U_{\Delta}}{\sqrt{3}} \quad I_{Y} = \frac{I_{\Delta}}{\sqrt{3}} \quad M_{Y} = \frac{M_{\Delta}}{3}$    
   \end{mtabular}
@@ -879,16 +883,19 @@ Hier wird die Asynchronmaschine an der Welle nicht belastet.
 Hier wird die Welle der Asynchronmaschine blokiert ($s = 1$).
 
 \begin{center}
-  \begin{circuitikz}
+  \begin{circuitikz} [scale=0.9, transform shape]
     \draw (0,2) to [short, o-, i={\large $\cn{I_k}$}] (1,2) to [R, l={\large $R_1$}] (3,2)
       to [L, l={\large $X_{\sigma 1}$}] (5,2) to [short] (6,2) to [L, l={\large $X_{\sigma 2}'$}] (8,2)
       to [short, i={\large $\cn{I'_2}$}] (9,2) to [R, l={\large $R'_2$}] (9,0) to [short, -o] (0,0);
-    \draw [>=latex, ->, bend right=20, shorten >=2mm, shorten <=2mm] (0,2) to [short] (0,0) node[left] {\large $\cn{U_k}$};
+    \draw [>=latex, ->, bend right=20, shorten >=2mm, shorten <=2mm] (0,2) to node[left] {\large
+    $\cn{U_k}$} (0,0);
   \end{circuitikz}
 \end{center}
 
 $$R_1 + R'_2 = \frac{U_R}{I_K} = \frac{U_K \cdot \cos{\varphi_K}}{I_K} \qquad 
 X_{\sigma 1} + X'_{\sigma 2} = \frac{U_X}{I_K} = \frac{U_K \cdot \sin{\varphi_k}}{I_K}$$
+$$\cos{\varphi_K} = \frac{P_K}{U_K \cdot I_K} \qquad X'_{2\sigma} = \frac{q_1 \cdot 60}{4 \pi n_1} \cdot
+\frac{U^2_1}{M_K}$$
 
 \section{Schrittmotor}
 
@@ -1003,13 +1010,15 @@ Impulseinschaltens ($\omega_1 = 0$ bedeutet der Rotor ist im Stillstand, ist $\o
     $\delta_d$ & Kleinster Luftspalt \\
     $\delta_q$ & grösster Luftspalt \\
     $M_M$ & Motormoment \\
-    $J_g$ & gesamtes Trägheitsmoment
+    $J_g$ & gesamtes Trägheitsmoment \\
+    $N$ & Windungszahl einer Spule \\
   \end{dtabular} &
   \begin{mtabular}{l}
     $\fmm M = \frac{dW_m}{d\varphi} = \frac{1}{2}\cdot I^2 \cdot \frac{dL(\varphi)}{d\varphi}$ \\
     $\fmm \Rightarrow M_M = \frac{1}{2}\cdot I^2 \cdot \frac{L_d - L_q}{\alpha_0}$ \\
     $\fmm L_d = N^2 \cdot \mu_0 \cdot \frac{A_z}{2\delta_d}$ \\
     $\fmm L_q = N^2 \cdot \mu_0 \cdot \frac{A_z}{2\delta_q}$ \\
+    $\fmm M_M = J_g \cdot \frac{\omega_s - \omega_1}{f_s} + M_L = J_g \cdot \dot{\omega} + M_L$
   \end{mtabular}
 \end{tabular}
 
@@ -1051,7 +1060,7 @@ Impulseinschaltens ($\omega_1 = 0$ bedeutet der Rotor ist im Stillstand, ist $\o
       xlabel={$\gamma_r$},
       ylabel={$L$},
       width=0.6\columnwidth,
-      height=0.4\columnwidth,
+      height=0.3\columnwidth,
       axis lines=middle,
       xtick={3.142},
       xticklabels={$\alpha_0$},
@@ -1083,7 +1092,8 @@ Impulseinschaltens ($\omega_1 = 0$ bedeutet der Rotor ist im Stillstand, ist $\o
   $$p_\delta(t) = \frac{1}{2} \cdot \frac{dL}{d\gamma_r}(\gamma_r) \cdot \omega_r \cdot i^2(t)$$
   $$M_M(t) = \frac{p_\delta}{\omega_r}(t) = \frac{1}{2} \cdot \frac{dL}{d\gamma_r}(\gamma_r)
   \cdot i^2(t)$$ $$M_L (f_s, \omega_1) = M_M - J_g \alpha_0 f_s^2 + J_g \omega_1 f_s$$
-  
+  $$P_{Stator}(t) = R i^2(t) + \frac{\partial L}{\partial \gamma_r}(\gamma_r) \cdot \omega_r \cdot i^2(t) +
+  L i(t) \cdot \frac{di}{dt}(t)$$
 
 \section{Vergleich der Maschinen}
 \begin{tabular}{|c|c|c|c|c|}
